@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets>
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>who</Title>
+      <Shortcut>who</Shortcut>
+      <Description>Insert sp_who results to table</Description>
+      <Author />
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+    </Header>
+    <Snippet>
+      <Declarations />
+      <Code Language="sql"><![CDATA[DROP TABLE IF EXISTS #temptable
+
+CREATE TABLE #temptable (
+    spid       SMALLINT
+  , ecid       SMALLINT
+  , status     NVARCHAR (30)
+  , loginame   NVARCHAR (128)
+  , hostname   NVARCHAR (128)
+  , blk        VARCHAR (5)
+  , dbname     NVARCHAR (128)
+  , cmd        NVARCHAR (16)
+  , request_id INT
+);
+
+INSERT INTO #temptable (
+                           spid
+                         , ecid
+                         , status
+                         , loginame
+                         , hostname
+                         , blk
+                         , dbname
+                         , cmd
+                         , request_id
+                       )
+        EXEC sys.sp_who @loginame = NULL;
+        
+SELECT *
+FROM #temptable
+$CURSOR$
+]]></Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

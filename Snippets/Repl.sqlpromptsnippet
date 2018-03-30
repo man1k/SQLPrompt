@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets>
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>Repl</Title>
+      <Shortcut>Repl</Shortcut>
+      <Description>Replace</Description>
+      <Author />
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+    </Header>
+    <Snippet>
+      <Declarations>
+        <Literal>
+          <ID>KAKVO</ID>
+          <ToolTip />
+          <Default />
+        </Literal>
+        <Literal>
+          <ID>SKAKVO</ID>
+          <ToolTip />
+          <Default />
+        </Literal>
+      </Declarations>
+      <Code Language="sql"><![CDATA[REPLACE ($SELECTEDTEXT$, $KAKVO$, $SKAKVO$)$CURSOR$]]></Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

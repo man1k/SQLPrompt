@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets>
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>cctsara</Title>
+      <Shortcut>cctsara</Shortcut>
+      <Description>Create :CONNECT to all SARA Instances</Description>
+      <Author />
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+    </Header>
+    <Snippet>
+      <Declarations />
+      <Code Language="sql"><![CDATA[:CONNECT SOFDEVSARA
+:CONNECT SOFQASARA
+:CONNECT SOFSTSARA
+:CONNECT SOFLTSARA
+]]></Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

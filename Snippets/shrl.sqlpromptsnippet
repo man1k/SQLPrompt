@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets>
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>shrl</Title>
+      <Shortcut>shrl</Shortcut>
+      <Description>Run DBCC SHRINKFILE log</Description>
+      <Author />
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+    </Header>
+    <Snippet>
+      <Declarations>
+        <Literal>
+          <ID>FileSize</ID>
+          <ToolTip />
+          <Default>1024</Default>
+        </Literal>
+      </Declarations>
+      <Code Language="sql"><![CDATA[USE $DBNAME$
+GO
+CHECKPOINT
+GO
+DBCC SHRINKFILE ('$DBNAME$_log', $FileSize$)
+GO]]></Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets>
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>shrt</Title>
+      <Shortcut>shrt</Shortcut>
+      <Description>Shrink tempdb files</Description>
+      <Author />
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+    </Header>
+    <Snippet>
+      <Declarations />
+      <Code Language="sql"><![CDATA[USE tempdb
+GO
+DBCC DROPCLEANBUFFERS
+GO
+DBCC FREEPROCCACHE
+DBCC FREESESSIONCACHE
+DBCC FREESYSTEMCACHE ('ALL')
+GO
+
+DECLARE @SQL NVARCHAR(MAX) = ''
+
+SELECT @SQL += 'DBCC SHRINKFILE (''' + name + ''', 1024)'
+FROM sys.database_files AS df
+WHERE
+	df.type = 0
+
+EXEC sys.sp_executesql @SQL
+]]></Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

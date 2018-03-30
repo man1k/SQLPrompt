@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets>
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>st10</Title>
+      <Shortcut>st10</Shortcut>
+      <Description>SELECT TOP 10 rows</Description>
+      <Author />
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+    </Header>
+    <Snippet>
+      <Declarations />
+      <Code Language="sql"><![CDATA[SELECT TOP 10 *
+FROM ]]></Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

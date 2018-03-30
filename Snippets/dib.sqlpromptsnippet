@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets>
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>dib</Title>
+      <Shortcut>dib</Shortcut>
+      <Description>Delete in batches</Description>
+      <Author />
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+    </Header>
+    <Snippet>
+      <Declarations>
+        <Literal>
+          <ID>BatchSize</ID>
+          <ToolTip />
+          <Default>1000</Default>
+        </Literal>
+        <Literal>
+          <ID>TableName</ID>
+          <ToolTip />
+          <Default>TableName</Default>
+        </Literal>
+      </Declarations>
+      <Code Language="sql"><![CDATA[DECLARE
+	@IterationId INT = 0
+	, @BatchSize INT = $BatchSize$
+	, @StartDataTime DATETIME
+
+CREATE TABLE #Results (
+	IterationId INT
+	, ProcessId SMALLINT
+	, StartDataTime DATETIME
+	, EndDataTime DATETIME
+)
+
+SET ROWCOUNT @BatchSize
+
+WHILE 1 = 1
+BEGIN
+    SELECT
+		@IterationId = @IterationId + 1
+		, @StartDataTime = GETDATE()
+
+	DELETE FROM $TableName$
+
+	IF @@ROWCOUNT = 0
+		BREAK
+    
+	INSERT INTO #Results
+			( IterationId, ProcessId, StartDataTime, EndDataTime )
+	VALUES
+			( @IterationId, 1, @StartDataTime, GETDATE() )
+    
+END
+
+SET ROWCOUNT 0
+]]></Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

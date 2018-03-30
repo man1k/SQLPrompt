@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets>
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>brct</Title>
+      <Shortcut>brct</Shortcut>
+      <Description>Surround with BEGIN TRANSACTION ... ROLLBACK TRANSACTION --COMMIT TRANSACTION</Description>
+      <Author />
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+    </Header>
+    <Snippet>
+      <Declarations />
+      <Code Language="sql"><![CDATA[BEGIN TRANSACTION
+
+$SELECTEDTEXT$
+$CURSOR$
+ROLLBACK TRANSACTION
+--COMMIT TRANSACTION]]></Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

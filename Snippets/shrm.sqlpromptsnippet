@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets>
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>shrm</Title>
+      <Shortcut>shrm</Shortcut>
+      <Description>Run DBCC SHRINKFILE mdf</Description>
+      <Author />
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+    </Header>
+    <Snippet>
+      <Declarations>
+        <Literal>
+          <ID>FileSize</ID>
+          <ToolTip />
+          <Default />
+        </Literal>
+      </Declarations>
+      <Code Language="sql"><![CDATA[USE $DBNAME$
+GO
+DBCC SHRINKFILE ('$DBNAME$', $FileSize$)
+GO]]></Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

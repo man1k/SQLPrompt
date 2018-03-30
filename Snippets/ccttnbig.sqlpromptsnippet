@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets>
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>ccttnbig</Title>
+      <Shortcut>ccttnbig</Shortcut>
+      <Description>Create :CONNECT to all TNBIG Instances</Description>
+      <Author />
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+    </Header>
+    <Snippet>
+      <Declarations />
+      <Code Language="sql"><![CDATA[:CONNECT SOFDEV1TNBIG
+:CONNECT SOFQA1TNBIG
+:CONNECT SOFDEV2TNBIG
+:CONNECT SOFQA2TNBIG
+:CONNECT SOFDEVTNBIG
+:CONNECT SOFQATNBIG
+:CONNECT SOFQAPRODTNBIG
+:CONNECT SOFSTTNBIG
+:CONNECT SOFLTTNBIG
+]]></Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

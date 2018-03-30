@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets>
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>ccttn</Title>
+      <Shortcut>ccttn</Shortcut>
+      <Description>Create :CONNECT to all TN Instances</Description>
+      <Author />
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+    </Header>
+    <Snippet>
+      <Declarations />
+      <Code Language="sql"><![CDATA[:CONNECT SOFDEV1TN
+:CONNECT SOFQA1TN
+:CONNECT SOFDEV2TN
+:CONNECT SOFQA2TN
+:CONNECT SOFDEVTN
+:CONNECT SOFQATN
+:CONNECT SOFQAPRODTN
+:CONNECT SOFSTTN
+:CONNECT SOFLTTN
+]]></Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

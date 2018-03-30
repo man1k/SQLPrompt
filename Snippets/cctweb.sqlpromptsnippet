@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets>
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>cctweb</Title>
+      <Shortcut>cctweb</Shortcut>
+      <Description>Create :CONNECT to all WEB Instances</Description>
+      <Author />
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+    </Header>
+    <Snippet>
+      <Declarations />
+      <Code Language="sql"><![CDATA[:CONNECT SOFDEVWEB
+:CONNECT SOFQAWEB
+:CONNECT SOFSTWEB
+]]></Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

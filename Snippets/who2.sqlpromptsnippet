@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets>
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>who2</Title>
+      <Shortcut>who2</Shortcut>
+      <Description>Insert sp_who2 into a table</Description>
+      <Author />
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+    </Header>
+    <Snippet>
+      <Declarations />
+      <Code Language="sql"><![CDATA[DROP TABLE IF EXISTS #temptable;
+
+CREATE TABLE #temptable (
+    SPID        INT
+  , Status      VARCHAR (1000)
+  , LoginName   SYSNAME         NULL
+  , HostName    SYSNAME         NULL
+  , BlkBy       SYSNAME         NULL
+  , DBName      SYSNAME         NULL
+  , Command     NVARCHAR (1000) NULL
+  , CPUTime     INT             NULL
+  , DiskIO      INT             NULL
+  , LastBatch   VARCHAR (1000)  NULL
+  , ProgramName VARCHAR (1000)  NULL
+  , SPID2       INT             NULL
+  , REQUESTID   INT             NULL
+);
+
+INSERT INTO #temptable (
+                           SPID
+                         , Status
+                         , LoginName
+                         , HostName
+                         , BlkBy
+                         , DBName
+                         , Command
+                         , CPUTime
+                         , DiskIO
+                         , LastBatch
+                         , ProgramName
+                         , SPID2
+                         , REQUESTID
+                       )
+        EXEC sys.sp_who2;
+
+SELECT *
+FROM   #temptable AS t
+$CURSOR$]]></Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>
