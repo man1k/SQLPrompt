@@ -2,9 +2,9 @@
 <CodeSnippets>
   <CodeSnippet Format="1.0.0">
     <Header>
-      <Title>gb</Title>
-      <Shortcut>gb</Shortcut>
-      <Description>GROUP BY fragment</Description>
+      <Title>log</Title>
+      <Shortcut>log</Shortcut>
+      <Description>Immediatelly prin a message</Description>
       <Author />
       <SnippetTypes>
         <SnippetType>Expansion</SnippetType>
@@ -12,8 +12,7 @@
     </Header>
     <Snippet>
       <Declarations />
-      <Code Language="sql"><![CDATA[GROUP BY
-	$CURSOR$]]></Code>
+      <Code Language="sql"><![CDATA[RAISERROR ('$CURSOR$', 0, 1) WITH NOWAIT]]></Code>
     </Snippet>
   </CodeSnippet>
 </CodeSnippets>

@@ -2,9 +2,9 @@
 <CodeSnippets>
   <CodeSnippet Format="1.0.0">
     <Header>
-      <Title>iest</Title>
-      <Shortcut>iest</Shortcut>
-      <Description>IF EXISTS ( ... )</Description>
+      <Title>ssio</Title>
+      <Shortcut>ssio</Shortcut>
+      <Description>Set Identity Insert</Description>
       <Author />
       <SnippetTypes>
         <SnippetType>Expansion</SnippetType>
@@ -15,10 +15,13 @@
         <Literal>
           <ID>table_name</ID>
           <ToolTip />
-          <Default>[schema].[table_name]</Default>
+          <Default />
         </Literal>
       </Declarations>
-      <Code Language="sql"><![CDATA[IF EXISTS (SELECT TOP 1 1 FROM $table_name$ WHERE $CURSOR$)]]></Code>
+      <Code Language="sql"><![CDATA[ SET IDENTITY_INSERT $table_name$ ON 
+ 
+ 
+ SET IDENTITY_INSERT $table_name$ OFF ]]></Code>
     </Snippet>
   </CodeSnippet>
 </CodeSnippets>

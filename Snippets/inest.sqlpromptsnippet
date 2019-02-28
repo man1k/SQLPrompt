@@ -18,7 +18,7 @@
           <Default>[schema].[table_name]</Default>
         </Literal>
       </Declarations>
-      <Code Language="sql"><![CDATA[IF NOT EXISTS (SELECT TOP 1 1 FROM $table_name$ WHERE $CURSOR$ )]]></Code>
+      <Code Language="sql"><![CDATA[IF NOT EXISTS (SELECT TOP 1 1 FROM $table_name$ WHERE $CURSOR$)]]></Code>
     </Snippet>
   </CodeSnippet>
 </CodeSnippets>

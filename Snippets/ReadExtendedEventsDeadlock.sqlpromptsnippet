@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets>
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>ReadExtendedEventsDeadlock</Title>
+      <Shortcut>ReadExtendedEventsDeadlock</Shortcut>
+      <Description />
+      <Author />
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+    </Header>
+    <Snippet>
+      <Declarations />
+      <Code Language="sql"><![CDATA[;WITH xmlData AS (
+                     -- Read in the xe_deadlock file, returning the raw deadlock info as XML
+                     SELECT CAST(event_data AS XML) AS data
+                     FROM   sys.fn_xe_file_target_read_file ('G:\EE\dead*.xel', NULL, NULL, NULL)
+                 )
+    , xmlReport AS (
+                       -- extract informaton about the deadlock VICTIM using XQuery
+                       SELECT
+                            xmlData.data.value ('(/event/data/value/deadlock/process-list/process/@lasttranstarted)[1]', 'datetime')  AS [Event Time]
+                          , xmlData.data.value ('(/event/data/value/deadlock/resource-list/keylock/@objectname)[1]', 'nvarchar(max)') AS object
+                          , xmlData.data.value ('(/event/data/value/deadlock/process-list/process/@clientapp)[1]', 'nvarchar(256)')   AS Application
+                          , xmlData.data.value ('(/event/data/value/deadlock/process-list/process/@hostname)[1]', 'nvarchar(256)')    AS Hostname
+                          , xmlData.data.value ('(/event/data/value/deadlock/process-list/process/@loginname)[1]', 'nvarchar(256)')   AS Login
+                          , xmlData.data.value ('(/event/data/value/deadlock/resource-list/keylock/@indexname)[1]', 'nvarchar(256)')  AS [Index]
+                          , xmlData.data.value ('(/event/data/value/deadlock/process-list/process/@waittime)[1]', 'int')              AS [Wait Time (ms)]
+                          , xmlData.data.value ('(/event/data/value/deadlock/resource-list/keylock/@mode)[1]', 'char(1)')             AS [Lock Mode]
+                          , xmlData.data.query ('(event/data/value/deadlock)[1]')                                                     AS [Deadlock Graph]
+                       FROM xmlData
+                   )
+SELECT
+         xmlReport.[Event Time]
+       , PARSENAME (xmlReport.object, 3) AS [Database]
+       , PARSENAME (xmlReport.object, 2) AS [Schema]
+       , PARSENAME (xmlReport.object, 1) AS [Table]
+       , xmlReport.Application
+       , xmlReport.Hostname
+       , xmlReport.Login
+       , xmlReport.[Index]
+       , xmlReport.[Wait Time (ms)]
+       , xmlReport.[Lock Mode]
+       , xmlReport.[Deadlock Graph]
+FROM     xmlReport
+ORDER BY xmlReport.[Event Time] DESC;]]></Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

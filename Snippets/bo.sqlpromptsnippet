@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets>
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>bo</Title>
+      <Shortcut>bo</Shortcut>
+      <Description>Do specific operation on batches</Description>
+      <Author />
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+    </Header>
+    <Snippet>
+      <Declarations>
+        <Literal>
+          <ID>BATCHSIZE</ID>
+          <ToolTip />
+          <Default>10000</Default>
+        </Literal>
+        <Literal>
+          <ID>DEBUG</ID>
+          <ToolTip />
+          <Default>1</Default>
+        </Literal>
+      </Declarations>
+      <Code Language="sql"><![CDATA[SET NOCOUNT ON
+
+DECLARE
+    @Message                   NVARCHAR (MAX) = ''
+  , @Debug                     BIT            = $DEBUG$
+  , @BatchSize                 INT            = $BATCHSIZE$
+  , @IterationNumber           INT            = 0
+  , @IterationStartDateTime    DATETIME2 (7)
+  , @IterationEndDateTime      DATETIME2 (7)
+  , @IterationAffectedRowCount INT            = 1;
+
+WHILE @IterationAffectedRowCount > 0
+BEGIN
+    IF (@Debug = 1)
+    BEGIN
+        SELECT
+            @IterationNumber        = @IterationNumber + 1
+          , @IterationStartDateTime = SYSDATETIME ();
+    END
+
+    /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*\
+    	INSERT HERE THE OPERATION YOU WANT TO BE ON BATCHES
+    \*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+    $CURSOR$
+
+    SELECT @IterationAffectedRowCount = @@ROWCOUNT;
+
+    IF (@Debug = 1)
+    BEGIN
+        SELECT @IterationEndDateTime = SYSDATETIME ();
+        SELECT @Message = N'Execution #: ' + CAST(@IterationNumber AS VARCHAR (10)) + N'; Affected Rows: ' + CAST(@IterationAffectedRowCount AS VARCHAR (10)) + N'; Execution Time (ms): ' + CAST(DATEDIFF (MILLISECOND, @IterationStartDateTime, @IterationEndDateTime) AS VARCHAR (10));
+
+        RAISERROR (@Message, 0, 1) WITH NOWAIT;
+    END;
+END;]]></Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

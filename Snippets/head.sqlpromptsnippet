@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets>
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>head</Title>
+      <Shortcut>head</Shortcut>
+      <Description>Object creation header</Description>
+      <Author />
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+    </Header>
+    <Snippet>
+      <Declarations>
+        <Literal>
+          <ID>SCHEMA</ID>
+          <ToolTip />
+          <Default>Live</Default>
+        </Literal>
+        <Literal>
+          <ID>AUTHOR</ID>
+          <ToolTip />
+          <Default />
+        </Literal>
+        <Literal>
+          <ID>DESCRIPTION</ID>
+          <ToolTip />
+          <Default />
+        </Literal>
+        <Literal>
+          <ID>NAME</ID>
+          <ToolTip />
+          <Default>ObjectName</Default>
+        </Literal>
+        <Literal>
+          <ID>TYPE</ID>
+          <ToolTip />
+          <Default>Stored Procedure</Default>
+        </Literal>
+      </Declarations>
+      <Code Language="sql"><![CDATA[/******************************************************************************************\  
+Project		: $SCHEMA$
+Object Name : $NAME$
+Object Type : $TYPE$
+Created By  : $AUTHOR$
+Created Date: $DATE(dd MMM yyyy)$
+Approved By :
+Description : $DESCRIPTION$
+-------------------------------------------------------------------------------------------
+Demo Call:
+
+    
+
+-------------------------------------------------------------------------------------------
+Changes History:
+================
+Changed By  : 
+Changed Date: 
+Approved By : 
+Description : 
+-------------------------------------------------------------------------------------------
+Changed By  : 
+Changed Date: 
+Approved By : 
+Description : 
+\******************************************************************************************/
+CREATE OR ALTER $CURSOR$]]></Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

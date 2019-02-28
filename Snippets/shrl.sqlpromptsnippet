@@ -23,7 +23,9 @@ GO
 CHECKPOINT
 GO
 DBCC SHRINKFILE ('$DBNAME$_log', $FileSize$)
-GO]]></Code>
+GO
+--ALTER DATABASE $DBNAME$ MODIFY FILE (NAME = '$DBNAME$_log', SIZE = $FileSize$MB)
+]]></Code>
     </Snippet>
   </CodeSnippet>
 </CodeSnippets>

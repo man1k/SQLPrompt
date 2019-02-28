@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets>
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>ServerDatabaseAudit</Title>
+      <Shortcut>ServerDatabaseAudit</Shortcut>
+      <Description />
+      <Author />
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+    </Header>
+    <Snippet>
+      <Declarations />
+      <Code Language="sql"><![CDATA[USE master;  
+GO  
+CREATE SERVER AUDIT AuditDataAccess  
+    TO FILE (FILEPATH = 'U:\EE_Logs\')
+
+GO  
+ALTER SERVER AUDIT AuditDataAccess WITH (STATE = ON);  
+GO  
+-- Create the database audit specification in the TestDB database  
+USE TradeNetworks;  
+GO  
+CREATE DATABASE AUDIT SPECIFICATION FilterPositionsData  
+FOR SERVER AUDIT [AuditDataAccess]   
+ADD (UPDATE ON OBJECT::Live.Positions BY [public]),
+ADD (INSERT ON OBJECT::Live.Positions BY [public])
+WITH (STATE = ON);  
+GO  
+
+
+
+SELECT * FROM sys.server_file_audits
+
+-- Check the audit for the filtered content  
+SELECT * FROM fn_get_audit_file('U:\EE_Logs\AuditDataAccess_*.sqlaudit',default,default);  
+GO  
+
+
+
+USE master
+GO
+ALTER DATABASE AUDIT SPECIFICATION [FilterPositionsData] WITH (STATE = OFF);
+GO
+DROP DATABASE AUDIT SPECIFICATION [FilterPositionsData]
+GO
+ALTER SERVER AUDIT AuditDataAccess  
+WITH (STATE = OFF);  
+GO
+DROP SERVER AUDIT AuditDataAccess;  
+GO  ]]></Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

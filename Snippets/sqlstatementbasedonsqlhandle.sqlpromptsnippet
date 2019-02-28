@@ -2,9 +2,9 @@
 <CodeSnippets>
   <CodeSnippet Format="1.0.0">
     <Header>
-      <Title>gb</Title>
-      <Shortcut>gb</Shortcut>
-      <Description>GROUP BY fragment</Description>
+      <Title>sqlstatementbasedonsqlhandle</Title>
+      <Shortcut>sqlstatementbasedonsqlhandle</Shortcut>
+      <Description />
       <Author />
       <SnippetTypes>
         <SnippetType>Expansion</SnippetType>
@@ -12,8 +12,8 @@
     </Header>
     <Snippet>
       <Declarations />
-      <Code Language="sql"><![CDATA[GROUP BY
-	$CURSOR$]]></Code>
+      <Code Language="sql"><![CDATA[
+SELECT * FROM sys.dm_exec_sql_text(0x02000000b39b8d04eb9d32fc2b96788f4f52be5e96a31c9e0000000000000000000000000000000000000000)  ]]></Code>
     </Snippet>
   </CodeSnippet>
 </CodeSnippets>

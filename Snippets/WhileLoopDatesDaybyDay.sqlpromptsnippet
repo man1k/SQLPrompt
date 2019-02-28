@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets>
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>WhileLoopDatesDaybyDay</Title>
+      <Shortcut>WhileLoopDatesDaybyDay</Shortcut>
+      <Description />
+      <Author />
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+    </Header>
+    <Snippet>
+      <Declarations />
+      <Code Language="sql"><![CDATA[DECLARE
+    @MinDate DATE = '20150101'
+  , @MaxDate DATE = '20170802'
+  , @Id      INT
+  , @Day     DATE;
+DROP TABLE IF EXISTS #InsertedData;
+DROP TABLE IF EXISTS #Dates;
+
+CREATE TABLE #InsertedData (
+    InsertedId   INT
+  , InsertedDate DATE
+);
+WITH cte AS (
+                SELECT    TOP (DATEDIFF (DAY, @MinDate, @MaxDate) + 1)
+                          DATEADD (DAY, ROW_NUMBER () OVER (ORDER BY a.object_id) - 1, @MinDate) AS Date
+                FROM
+                          sys.all_objects AS a
+               CROSS JOIN sys.all_objects AS b
+            )
+SELECT
+         cte.Date
+       , IDENTITY(INT, 1, 1) AS Id
+INTO     #Dates
+FROM     cte
+ORDER BY cte.Date DESC;
+
+SELECT @Id = MAX (d.Id)
+FROM   #Dates AS d;
+
+
+WHILE (@Id > 0)
+BEGIN
+
+    SELECT @Day = d.Date
+    FROM   #Dates AS d
+    WHERE  d.Id = @Id;
+
+    IF NOT EXISTS (
+                      SELECT TOP 1 1
+                      FROM   #InsertedData AS id
+                      WHERE  id.InsertedDate = @Day
+                  )
+    BEGIN
+
+        EXEC Live.GetEODAccountFinancialDataAtGivenDate @Date = @Day;
+
+    END;
+
+    PRINT CAST(@Day AS NVARCHAR (500));
+    SET @Id = @Id - 1;
+END;
+
+
+
+]]></Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

@@ -14,9 +14,16 @@
       <Declarations />
       <Code Language="sql"><![CDATA[BEGIN TRY
     $SELECTEDTEXT$
+    $CURSOR$
 END TRY
 BEGIN CATCH
-    $CURSOR$
+    IF @@TRANCOUNT > 0
+	    ROLLBACK TRANSACTION
+
+    DECLARE @ErrorStr NVARCHAR(4000)
+    SELECT  @ErrorStr = dbo.FlushErrorString_FN()
+    RAISERROR(@ErrorStr,16,1)
+    RETURN -1;
 END CATCH]]></Code>
     </Snippet>
   </CodeSnippet>

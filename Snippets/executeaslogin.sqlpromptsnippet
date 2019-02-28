@@ -2,9 +2,9 @@
 <CodeSnippets>
   <CodeSnippet Format="1.0.0">
     <Header>
-      <Title>gb</Title>
-      <Shortcut>gb</Shortcut>
-      <Description>GROUP BY fragment</Description>
+      <Title>executeaslogin</Title>
+      <Shortcut>executeaslogin</Shortcut>
+      <Description />
       <Author />
       <SnippetTypes>
         <SnippetType>Expansion</SnippetType>
@@ -12,8 +12,12 @@
     </Header>
     <Snippet>
       <Declarations />
-      <Code Language="sql"><![CDATA[GROUP BY
-	$CURSOR$]]></Code>
+      <Code Language="sql"><![CDATA[
+  EXECUTE AS LOGIN  = 'CLOUDAD\scCOS$'
+
+  EXEC Live.GetTransactionStatisticsPerUserAccountIds @UserAccountIdsXML = NULL -- xml
+
+  REVERT]]></Code>
     </Snippet>
   </CodeSnippet>
 </CodeSnippets>
