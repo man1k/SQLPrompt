@@ -12,15 +12,14 @@
     </Header>
     <Snippet>
       <Declarations />
-      <Code Language="sql"><![CDATA[:CONNECT SOFDEV1TN
-:CONNECT SOFQA1TN
-:CONNECT SOFDEV2TN
+      <Code Language="sql"><![CDATA[:CONNECT SOFDEV2TN
 :CONNECT SOFQA2TN
 :CONNECT SOFDEVTN
 :CONNECT SOFQATN
 :CONNECT SOFQAPRODTN
 :CONNECT SOFSTTN
 :CONNECT SOFLTTN
+:CONNECT SOFLTDTAKEMASK
 ]]></Code>
     </Snippet>
   </CodeSnippet>

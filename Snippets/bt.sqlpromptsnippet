@@ -12,7 +12,8 @@
     </Header>
     <Snippet>
       <Declarations />
-      <Code Language="sql"><![CDATA[BEGIN TRANSACTION ]]></Code>
+      <Code Language="sql"><![CDATA[BEGIN TRANSACTION;
+]]></Code>
     </Snippet>
   </CodeSnippet>
 </CodeSnippets>

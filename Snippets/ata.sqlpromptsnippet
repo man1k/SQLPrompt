@@ -20,10 +20,10 @@
         <Literal>
           <ID>column_name</ID>
           <ToolTip />
-          <Default />
+          <Default>[$column_name$]</Default>
         </Literal>
       </Declarations>
-      <Code Language="sql"><![CDATA[ALTER TABLE $table_name$ ADD [$column_name$] $SELECTIONEND$INT$SELECTIONSTART$]]></Code>
+      <Code Language="sql"><![CDATA[ALTER TABLE $table_name$ ADD $column_name$ $SELECTIONEND$INT$SELECTIONSTART$]]></Code>
     </Snippet>
   </CodeSnippet>
 </CodeSnippets>

@@ -12,7 +12,7 @@
     </Header>
     <Snippet>
       <Declarations />
-      <Code Language="sql"><![CDATA[SELECT TOP 100 *
+      <Code Language="sql"><![CDATA[SELECT TOP (100) *
 FROM ]]></Code>
     </Snippet>
   </CodeSnippet>

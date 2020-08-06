@@ -18,16 +18,6 @@
           <Default>Live</Default>
         </Literal>
         <Literal>
-          <ID>AUTHOR</ID>
-          <ToolTip />
-          <Default />
-        </Literal>
-        <Literal>
-          <ID>DESCRIPTION</ID>
-          <ToolTip />
-          <Default />
-        </Literal>
-        <Literal>
           <ID>NAME</ID>
           <ToolTip />
           <Default>ObjectName</Default>
@@ -37,9 +27,19 @@
           <ToolTip />
           <Default>Stored Procedure</Default>
         </Literal>
+        <Literal>
+          <ID>AUTHOR</ID>
+          <ToolTip />
+          <Default />
+        </Literal>
+        <Literal>
+          <ID>DESCRIPTION</ID>
+          <ToolTip />
+          <Default />
+        </Literal>
       </Declarations>
       <Code Language="sql"><![CDATA[/******************************************************************************************\  
-Project		: $SCHEMA$
+Project     : $SCHEMA$
 Object Name : $NAME$
 Object Type : $TYPE$
 Created By  : $AUTHOR$

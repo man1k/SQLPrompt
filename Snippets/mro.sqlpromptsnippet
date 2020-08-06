@@ -12,9 +12,11 @@
     </Header>
     <Snippet>
       <Declarations />
-      <Code Language="sql"><![CDATA[SELECT TOP 20 [name], [type], crdate
-FROM sysobjects
-ORDER BY crdate DESC]]></Code>
+      <Code Language="sql"><![CDATA[
+        -- NOTE: 'sys.objects'/'create_date' is only available in SQL Server 2005+. Replace with 'sysobjects'/'crdate' in SQL Server 2000.
+SELECT TOP (20) [name], [type], create_date
+FROM sys.objects
+ORDER BY create_date DESC]]></Code>
     </Snippet>
   </CodeSnippet>
 </CodeSnippets>

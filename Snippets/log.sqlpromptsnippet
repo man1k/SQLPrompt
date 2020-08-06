@@ -4,7 +4,7 @@
     <Header>
       <Title>log</Title>
       <Shortcut>log</Shortcut>
-      <Description>Immediatelly prin a message</Description>
+      <Description>Immediatelly prin a message (uses RAISERROR)</Description>
       <Author />
       <SnippetTypes>
         <SnippetType>Expansion</SnippetType>
@@ -12,7 +12,8 @@
     </Header>
     <Snippet>
       <Declarations />
-      <Code Language="sql"><![CDATA[RAISERROR ('$CURSOR$', 0, 1) WITH NOWAIT]]></Code>
+      <Code Language="sql"><![CDATA[RAISERROR ('$SELECTEDTEXT$$CURSOR$', 0, 1) WITH NOWAIT
+]]></Code>
     </Snippet>
   </CodeSnippet>
 </CodeSnippets>

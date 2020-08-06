@@ -12,7 +12,8 @@
     </Header>
     <Snippet>
       <Declarations />
-      <Code Language="sql"><![CDATA[ROLLBACK TRANSACTION ]]></Code>
+      <Code Language="sql"><![CDATA[ROLLBACK TRANSACTION;
+]]></Code>
     </Snippet>
   </CodeSnippet>
 </CodeSnippets>
