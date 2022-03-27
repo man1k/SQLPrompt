@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets>
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>logrn</Title>
+      <Shortcut>logrn</Shortcut>
+      <Description>Immediatelly print message with the affected rows (uses RAISERROR)</Description>
+      <Author />
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+    </Header>
+    <Snippet>
+      <Declarations />
+      <Code Language="sql"><![CDATA[
+RAISERROR ('     - (%10u rows affected)', 0, 1, @@ROWCOUNT) WITH NOWAIT;
+]]></Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

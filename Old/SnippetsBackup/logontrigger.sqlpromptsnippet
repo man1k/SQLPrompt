@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets>
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>logontrigger</Title>
+      <Shortcut>logontrigger</Shortcut>
+      <Description />
+      <Author />
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+    </Header>
+    <Snippet>
+      <Declarations />
+      <Code Language="sql"><![CDATA[GRANT VIEW SERVER STATE TO [CLOUDAD\scTTBilling$];  
+GO  
+ALTER TRIGGER connection_limit_trigger  
+ON ALL SERVER WITH EXECUTE AS 'CLOUDAD\scTTBilling$'  
+FOR LOGON  
+AS  
+BEGIN  
+IF ORIGINAL_LOGIN()= 'CLOUDAD\scTTBilling$' AND  
+    (SELECT COUNT(*) FROM sys.dm_exec_sessions  
+            WHERE is_user_process = 1 AND  
+                original_login_name = 'CLOUDAD\scTTBilling$') > 1
+    ROLLBACK;  
+END;  ]]></Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

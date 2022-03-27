@@ -1,0 +1,25 @@
+{
+  "id": "fe87f4fa-c507-4bd5-8b5d-377e98a2bdde",
+  "name": "crv",
+  "prefix": "crv",
+  "description": "Create view",
+  "body": "/******************************************************************************************\\  \nProject     : $SCHEMA$\nObject Name : $NAME$\nObject Type : View\nCreated By  : $AUTHOR$\nCreated Date: $DATE(dd MMM yyyy)$\nApproved By :\nDescription : $DESCRIPTION$\n-------------------------------------------------------------------------------------------\nDemo Call:\n\n    SELECT *\n    FROM   $SCHEMA$.$NAME$\n\n-------------------------------------------------------------------------------------------\nChanges History:\n================\nChanged By  : \nChanged Date: \nApproved By : \nDescription : \n-------------------------------------------------------------------------------------------\nChanged By  : \nChanged Date: \nApproved By : \nDescription : \n\\******************************************************************************************/\nCREATE OR ALTER VIEW $SCHEMA$.$NAME$\n--WITH ENCRYPTION, SCHEMABINDING, VIEW_METADATA\nAS\n    $SELECTEDTEXT$$CURSOR$\n-- WITH CHECK OPTION\nGO\n",
+  "placeholders": [
+    {
+      "name": "SCHEMA",
+      "defaultValue": "Live"
+    },
+    {
+      "name": "NAME",
+      "defaultValue": ""
+    },
+    {
+      "name": "AUTHOR",
+      "defaultValue": ""
+    },
+    {
+      "name": "DESCRIPTION",
+      "defaultValue": ""
+    }
+  ]
+}

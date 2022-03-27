@@ -1,0 +1,21 @@
+{
+  "id": "87c0392b-8698-4d2a-b98e-04fb3d524ea2",
+  "name": "crincu",
+  "prefix": "crincu",
+  "description": "Create index nonclustered unique",
+  "body": "CREATE UNIQUE NONCLUSTERED INDEX $index_name$\nON $owner$ ( $column$ )\n--WITH PAD_INDEX\n--    | FILLFACTOR = fillfactor\n--    | IGNORE_DUP_KEY\n--    | DROP_EXISTING\n--    | STATISTICS_NORECOMPUTE\n--    | SORT_IN_TEMPDB, .. as required\n-- ON filegroup\nGO\n",
+  "placeholders": [
+    {
+      "name": "owner",
+      "defaultValue": "[schema].[index_name]"
+    },
+    {
+      "name": "column",
+      "defaultValue": ""
+    },
+    {
+      "name": "index_name",
+      "defaultValue": ""
+    }
+  ]
+}

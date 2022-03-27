@@ -1,0 +1,8 @@
+{
+  "id": "996dda29-58a3-49f6-a46f-e938c75a03b2",
+  "name": "cast",
+  "prefix": "cast",
+  "description": "Surround with CAST()",
+  "body": "CAST($SELECTEDTEXT$ AS $CURSOR$)",
+  "placeholders": []
+}

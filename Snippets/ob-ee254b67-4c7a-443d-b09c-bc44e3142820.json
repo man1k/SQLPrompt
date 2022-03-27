@@ -1,0 +1,8 @@
+{
+  "id": "ee254b67-4c7a-443d-b09c-bc44e3142820",
+  "name": "ob",
+  "prefix": "ob",
+  "description": "ORDER BY fragment",
+  "body": "ORDER BY\n\t$CURSOR$",
+  "placeholders": []
+}

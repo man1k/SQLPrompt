@@ -1,0 +1,6 @@
+{
+  "id": "3180e102-f7ac-4ce5-8541-9c9f07851307",
+  "prefix": "ss1f",
+  "description": "SELECT 1 FROM",
+  "body": "SELECT 1\r\nFROM $SELECTEDTEXT$$CURSOR$"
+}

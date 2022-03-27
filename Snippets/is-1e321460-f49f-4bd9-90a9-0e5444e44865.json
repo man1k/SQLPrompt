@@ -1,0 +1,8 @@
+{
+  "id": "1e321460-f49f-4bd9-90a9-0e5444e44865",
+  "name": "is",
+  "prefix": "is",
+  "description": "INFORMATION_SCHEMA fragment",
+  "body": "INFORMATION_SCHEMA",
+  "placeholders": []
+}

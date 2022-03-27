@@ -1,0 +1,29 @@
+{
+  "id": "af160c2d-17df-47a3-81cb-ba0b2e6a915a",
+  "name": "head",
+  "prefix": "head",
+  "description": "Object creation header",
+  "body": "/******************************************************************************************\\  \nProject     : $SCHEMA$\nObject Name : $NAME$\nObject Type : $TYPE$\nCreated By  : $AUTHOR$\nCreated Date: $DATE(dd MMM yyyy)$\nApproved By :\nDescription : $DESCRIPTION$\n-------------------------------------------------------------------------------------------\nDemo Call:\n\n    \n\n-------------------------------------------------------------------------------------------\nChanges History:\n================\nChanged By  : \nChanged Date: \nApproved By : \nDescription : \n-------------------------------------------------------------------------------------------\nChanged By  : \nChanged Date: \nApproved By : \nDescription : \n\\******************************************************************************************/\nCREATE OR ALTER $CURSOR$",
+  "placeholders": [
+    {
+      "name": "SCHEMA",
+      "defaultValue": "Live"
+    },
+    {
+      "name": "NAME",
+      "defaultValue": "ObjectName"
+    },
+    {
+      "name": "TYPE",
+      "defaultValue": "Stored Procedure"
+    },
+    {
+      "name": "AUTHOR",
+      "defaultValue": ""
+    },
+    {
+      "name": "DESCRIPTION",
+      "defaultValue": ""
+    }
+  ]
+}

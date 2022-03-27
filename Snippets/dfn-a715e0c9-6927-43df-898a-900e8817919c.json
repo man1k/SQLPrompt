@@ -1,0 +1,8 @@
+{
+  "id": "a715e0c9-6927-43df-898a-900e8817919c",
+  "name": "dfn",
+  "prefix": "dfn",
+  "description": "Drop function",
+  "body": "DROP FUNCTION ",
+  "placeholders": []
+}

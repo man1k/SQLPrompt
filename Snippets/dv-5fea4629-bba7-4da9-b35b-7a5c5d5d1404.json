@@ -1,0 +1,8 @@
+{
+  "id": "5fea4629-bba7-4da9-b35b-7a5c5d5d1404",
+  "name": "dv",
+  "prefix": "dv",
+  "description": "Drop view",
+  "body": "DROP VIEW IS EXISTS ",
+  "placeholders": []
+}

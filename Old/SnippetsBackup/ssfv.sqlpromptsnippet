@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets>
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>ssfv</Title>
+      <Shortcut>ssfv</Shortcut>
+      <Description />
+      <Author />
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+    </Header>
+    <Snippet>
+      <Declarations />
+      <Code Language="sql"><![CDATA[SELECT *
+FROM  (
+VALUES(
+
+)
+) as t (Column1, Column2...)
+
+]]></Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

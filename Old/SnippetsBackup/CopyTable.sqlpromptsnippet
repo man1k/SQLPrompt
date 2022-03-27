@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets>
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>CopyTable</Title>
+      <Shortcut>CopyTable</Shortcut>
+      <Description />
+      <Author />
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+    </Header>
+    <Snippet>
+      <Declarations />
+      <Code Language="sql"><![CDATA[DECLARE @DestinationSchema NVARCHAR (50) = 'PushNotifications';
+DECLARE @SourceSchema NVARCHAR (50) = 'CRM';
+
+SELECT
+            so.name                                                                       AS TableName
+          , N'create table [' + @DestinationSchema + '].[' + so.name + '] (' + o.list + (CASE WHEN kc.name IS NULL
+                                                                                              THEN ''
+                                                                                              ELSE ' CONSTRAINT ' + kc.name + ' PRIMARY KEY CLUSTERED ' + ' (' + LEFT(j.list, LEN (j.list) - 1) + '))'
+                                                                                         END
+                                                                                        ) AS TableScript
+FROM
+            sys.objects AS so
+CROSS APPLY (
+                SELECT
+                    -- column name
+                          '  [' + cl.name + '] ' +
+                    -- column type
+                    t.name +
+                    -- type lenght
+                    (CASE t.name
+                          WHEN 'sql_variant'
+                          THEN ''
+                          WHEN 'text'
+                          THEN ''
+                          WHEN 'ntext'
+                          THEN ''
+                          WHEN 'bit'
+                          THEN ''
+                          WHEN 'int'
+                          THEN ''
+                          WHEN 'tinyint'
+                          THEN ''
+                          WHEN 'smallint'
+                          THEN ''
+                          WHEN 'bigint'
+                          THEN ''
+                          WHEN 'timestamp'
+                          THEN ''
+                          WHEN 'date'
+                          THEN ''
+                          WHEN 'smalldatetime'
+                          THEN ''
+                          WHEN 'datetime'
+                          THEN ''
+                          WHEN 'datetime2'
+                          THEN ''
+                          WHEN 'real'
+                          THEN ''
+                          WHEN 'float'
+                          THEN ''
+                          WHEN 'time'
+                          THEN ''
+                          WHEN 'decimal'
+                          THEN '(' + CAST(cl.precision AS VARCHAR) + ', ' + CAST(cl.scale AS VARCHAR) + ')'
+                          ELSE '(' + (CASE WHEN cl.max_length = -1 THEN 'MAX' ELSE CAST(cl.max_length AS VARCHAR)END) + ')'
+                     END
+                    )     + ' ' +
+                    -- nullable
+                    (CASE WHEN cl.is_nullable = 0 THEN 'NOT ' ELSE '' END) + 'NULL,'
+                FROM
+                          sys.columns AS cl
+               INNER JOIN sys.types   AS t
+                       ON cl.user_type_id = t.user_type_id
+                WHERE     cl.object_id = so.object_id
+                ORDER BY  cl.column_id
+                FOR XML PATH ('')
+            )           AS o(list)
+INNER JOIN  sys.schemas         AS sch
+        ON  so.schema_id = sch.schema_id
+        AND sch.name = @SourceSchema
+LEFT JOIN   sys.key_constraints AS kc
+       ON   so.object_id = kc.parent_object_id
+        AND kc.type = 'PK'
+        AND kc.schema_id = so.schema_id
+CROSS APPLY (
+                SELECT    N'[' + col.name + '], '
+                FROM
+                          sys.columns       AS col
+               INNER JOIN sys.indexes       AS i
+                       ON col.object_id    = i.object_id
+                      AND i.is_primary_key = 1
+               INNER JOIN sys.index_columns AS ic
+                       ON ic.object_id     = so.object_id
+                      AND ic.column_id     = col.column_id
+                      AND ic.index_id      = i.index_id
+                WHERE     col.object_id = so.object_id
+                ORDER BY  ic.key_ordinal
+                FOR XML PATH ('')
+            )                   AS j(list)
+CROSS APPLY (
+                SELECT    N'[Destination].[' + col.name + '] = [Source].[' + col.name + '] AND '
+                FROM
+                          sys.columns       AS col
+               INNER JOIN sys.indexes       AS i
+                       ON col.object_id    = i.object_id
+                      AND i.is_primary_key = 1
+               INNER JOIN sys.index_columns AS ic
+                       ON ic.object_id     = so.object_id
+                      AND ic.column_id     = col.column_id
+                      AND ic.index_id      = i.index_id
+                WHERE     col.object_id = so.object_id
+                ORDER BY  ic.key_ordinal
+                FOR XML PATH ('')
+            ) AS k(list)
+WHERE       so.type = 'U'
+ORDER BY    so.name;]]></Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

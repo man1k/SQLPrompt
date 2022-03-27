@@ -1,0 +1,8 @@
+{
+  "id": "9a9a39cf-496d-420d-82df-fbc14ba9bfa7",
+  "name": "quoteesc",
+  "prefix": "quoteesc",
+  "description": "REPLACE '''' with ''''''",
+  "body": "REPLACE ($SELECTEDTEXT$, '''', '''''')$CURSOR$",
+  "placeholders": []
+}

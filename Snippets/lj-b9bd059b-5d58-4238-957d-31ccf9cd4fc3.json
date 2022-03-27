@@ -1,0 +1,8 @@
+{
+  "id": "b9bd059b-5d58-4238-957d-31ccf9cd4fc3",
+  "name": "lj",
+  "prefix": "lj",
+  "description": "LEFT JOIN fragment",
+  "body": "LEFT JOIN ",
+  "placeholders": []
+}

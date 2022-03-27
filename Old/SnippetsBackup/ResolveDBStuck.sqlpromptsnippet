@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets>
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>ResolveDBStuck</Title>
+      <Shortcut>ResolveDBStuck</Shortcut>
+      <Description />
+      <Author />
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+    </Header>
+    <Snippet>
+      <Declarations />
+      <Code Language="sql"><![CDATA[SELECT 
+sys.master_files.name as 'Logical Name', 
+sys.master_files.physical_name as 'Physical File Location', 
+(sys.master_files.size*8)/1024 as 'Size in MB'
+FROM sys.master_files WITH (NOLOCK)
+JOIN sys.databases WITH (NOLOCK) 
+on sys.master_files.database_id=sys.databases.database_id
+WHERE sys.databases.name = 'tempdb' and sys.master_files.type = 0
+GO
+
+USE TEMPDB;
+GO
+-- Clear the Plan Cache
+DBCC FREEPROCCACHE;
+GO
+-- Rightsize the TempDB files 
+DBCC SHRINKFILE(tempdev, 10);
+GO
+DBCC SHRINKFILE(tempdev2, 10);
+GO
+
+
+SELECT request_session_id FROM sys.dm_tran_locks 
+WHERE resource_database_id = DB_ID('TradeNetworks')
+
+EXEC sP_who
+
+KILL  42
+
+
+DBCC OPENTRAN
+
+USE master
+
+
+SET DEADLOCK_PRIORITY HIGH
+exec sp_dboption MyDBName, 'single user', 'FALSE';
+alter database TradeNetworks SET single_user with rollback immediate
+
+dbcc checkdb('TradeNetworks', REPAIR_ALLOW_DATA_LOSS)
+
+
+SET DEADLOCK_PRIORITY HIGH
+ALTER DATABASE TradeNetworks SET MULTI_USER with rollback immediate;
+
+
+sp_whoisactive]]></Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

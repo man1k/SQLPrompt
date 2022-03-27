@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets>
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>critvf</Title>
+      <Shortcut>critvf</Shortcut>
+      <Description>Create inline table-valued function</Description>
+      <Author />
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+    </Header>
+    <Snippet>
+      <Declarations>
+        <Literal>
+          <ID>SCHEMA</ID>
+          <ToolTip />
+          <Default>Live</Default>
+        </Literal>
+        <Literal>
+          <ID>NAME</ID>
+          <ToolTip />
+          <Default />
+        </Literal>
+        <Literal>
+          <ID>AUTHOR</ID>
+          <ToolTip />
+          <Default />
+        </Literal>
+        <Literal>
+          <ID>DESCRIPTION</ID>
+          <ToolTip />
+          <Default />
+        </Literal>
+      </Declarations>
+      <Code Language="sql"><![CDATA[/******************************************************************************************\  
+Project	    : $SCHEMA$
+Object Name : $NAME$
+Object Type : Inline table-valued function
+Created By  : $AUTHOR$
+Created Date: $DATE(dd MMM yyyy)$
+Approved By :
+Description : $DESCRIPTION$
+-------------------------------------------------------------------------------------------
+Demo Call:
+
+    SELECT *
+    FROM   $SCHEMA$.$NAME$()
+
+-------------------------------------------------------------------------------------------
+Changes History:
+================
+Changed By  : 
+Changed Date: 
+Approved By : 
+Description : 
+-------------------------------------------------------------------------------------------
+Changed By  : 
+Changed Date: 
+Approved By : 
+Description : 
+\******************************************************************************************/
+CREATE OR ALTER FUNCTION $SCHEMA$.$NAME$
+    (@parameter_name AS INT)
+RETURNS TABLE
+--WITH ENCRYPTION|SCHEMABINDING, ...
+AS
+RETURN ( $SELECTEDTEXT$$CURSOR$ )
+GO
+]]></Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

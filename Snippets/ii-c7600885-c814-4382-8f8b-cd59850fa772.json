@@ -1,0 +1,8 @@
+{
+  "id": "c7600885-c814-4382-8f8b-cd59850fa772",
+  "name": "ii",
+  "prefix": "ii",
+  "description": "INSERT INTO fragment",
+  "body": "INSERT INTO ",
+  "placeholders": []
+}

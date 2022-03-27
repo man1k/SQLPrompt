@@ -1,0 +1,8 @@
+{
+  "id": "6176724e-b732-4b0d-b2fc-0feae84af7aa",
+  "name": "gb",
+  "prefix": "gb",
+  "description": "GROUP BY fragment",
+  "body": "GROUP BY\n\t$CURSOR$",
+  "placeholders": []
+}

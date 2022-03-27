@@ -1,0 +1,17 @@
+{
+  "id": "4563c1d8-5985-4a58-ad7f-32bedef94cfc",
+  "name": "dib",
+  "prefix": "dib",
+  "description": "Delete in batches",
+  "body": "DECLARE\n\t@IterationId INT = 0\n\t, @BatchSize INT = $BatchSize$\n\t, @StartDataTime DATETIME\n\nCREATE TABLE #Results (\n\tIterationId INT\n\t, ProcessId SMALLINT\n\t, StartDataTime DATETIME\n\t, EndDataTime DATETIME\n)\n\nSET ROWCOUNT @BatchSize\n\nWHILE 1 = 1\nBEGIN\n    SELECT\n\t\t@IterationId = @IterationId + 1\n\t\t, @StartDataTime = GETDATE()\n\n\tDELETE FROM $TableName$\n\n\tIF @@ROWCOUNT = 0\n\t\tBREAK\n    \n\tINSERT INTO #Results\n\t\t\t( IterationId, ProcessId, StartDataTime, EndDataTime )\n\tVALUES\n\t\t\t( @IterationId, 1, @StartDataTime, GETDATE() )\n    \nEND\n\nSET ROWCOUNT 0\n",
+  "placeholders": [
+    {
+      "name": "BatchSize",
+      "defaultValue": "1000"
+    },
+    {
+      "name": "TableName",
+      "defaultValue": "TableName"
+    }
+  ]
+}

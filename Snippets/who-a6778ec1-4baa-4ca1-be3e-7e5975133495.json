@@ -1,0 +1,8 @@
+{
+  "id": "a6778ec1-4baa-4ca1-be3e-7e5975133495",
+  "name": "who",
+  "prefix": "who",
+  "description": "Insert sp_who results to table",
+  "body": "DROP TABLE IF EXISTS #temptable\n\nCREATE TABLE #temptable (\n    spid       SMALLINT\n  , ecid       SMALLINT\n  , status     NVARCHAR (30)\n  , loginame   NVARCHAR (128)\n  , hostname   NVARCHAR (128)\n  , blk        VARCHAR (5)\n  , dbname     NVARCHAR (128)\n  , cmd        NVARCHAR (16)\n  , request_id INT\n);\n\nINSERT INTO #temptable (\n                           spid\n                         , ecid\n                         , status\n                         , loginame\n                         , hostname\n                         , blk\n                         , dbname\n                         , cmd\n                         , request_id\n                       )\n        EXEC sys.sp_who @loginame = NULL;\n        \nSELECT *\nFROM #temptable\n$CURSOR$\n",
+  "placeholders": []
+}

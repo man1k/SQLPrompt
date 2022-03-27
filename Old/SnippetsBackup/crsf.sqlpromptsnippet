@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets>
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>crsf</Title>
+      <Shortcut>crsf</Shortcut>
+      <Description>Create scalar function</Description>
+      <Author />
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+    </Header>
+    <Snippet>
+      <Declarations>
+        <Literal>
+          <ID>SCHEMA</ID>
+          <ToolTip />
+          <Default />
+        </Literal>
+        <Literal>
+          <ID>NAME</ID>
+          <ToolTip />
+          <Default />
+        </Literal>
+        <Literal>
+          <ID>AUTHOR</ID>
+          <ToolTip />
+          <Default />
+        </Literal>
+        <Literal>
+          <ID>DESCRIPTION</ID>
+          <ToolTip />
+          <Default />
+        </Literal>
+      </Declarations>
+      <Code Language="sql"><![CDATA[/******************************************************************************************\  
+Project     : $SCHEMA$
+Object Name : $NAME$
+Object Type : Scalar function
+Created By  : $AUTHOR$
+Created Date: $DATE(dd MMM yyyy)$
+Approved By :
+Description : $DESCRIPTION$
+-------------------------------------------------------------------------------------------
+Demo Call:
+
+    SELECT $SCHEMA$.$NAME$()
+
+-------------------------------------------------------------------------------------------
+Changes History:
+================
+Changed By  : 
+Changed Date: 
+Approved By : 
+Description : 
+-------------------------------------------------------------------------------------------
+Changed By  : 
+Changed Date: 
+Approved By : 
+Description : 
+\******************************************************************************************/
+CREATE OR ALTER FUNCTION $SCHEMA$.$NAME$
+    (@parameter_name AS INT)
+RETURNS INT
+--WITH ENCRYPTION|SCHEMABINDING, ...
+AS
+BEGIN
+    RETURN $SELECTEDTEXT$$CURSOR$
+END
+GO
+]]></Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

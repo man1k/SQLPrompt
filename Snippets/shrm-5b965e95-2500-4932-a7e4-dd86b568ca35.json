@@ -1,0 +1,13 @@
+{
+  "id": "5b965e95-2500-4932-a7e4-dd86b568ca35",
+  "name": "shrm",
+  "prefix": "shrm",
+  "description": "Run DBCC SHRINKFILE mdf",
+  "body": "USE $DBNAME$\nGO\nDBCC SHRINKFILE ('$DBNAME$', $FileSize$)\nGO",
+  "placeholders": [
+    {
+      "name": "FileSize",
+      "defaultValue": ""
+    }
+  ]
+}

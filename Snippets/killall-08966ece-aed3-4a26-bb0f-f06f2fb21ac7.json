@@ -1,0 +1,6 @@
+{
+  "id": "08966ece-aed3-4a26-bb0f-f06f2fb21ac7",
+  "prefix": "killall",
+  "description": "Kill all connections",
+  "body": "USE\tMASTER\nGO\n \nDECLARE\t@Spid INT\nDECLARE\t@ExecSQL VARCHAR(255)\n \nDECLARE\tKillCursor CURSOR LOCAL STATIC READ_ONLY FORWARD_ONLY\nFOR\nSELECT\tDISTINCT SPID\nFROM\tMASTER..SysProcesses\nWHERE\tDBID = DB_ID('TradeNetworks')\n \nOPEN\tKillCursor\n \n-- Grab the first SPID\nFETCH\tNEXT\nFROM\tKillCursor\nINTO\t@Spid\n \nWHILE\t@@FETCH_STATUS = 0\n\tBEGIN\n\t\tSET\t\t@ExecSQL = 'KILL ' + CAST(@Spid AS VARCHAR(50))\n \n\t\tEXEC\t(@ExecSQL)\n \n\t\t-- Pull the next SPID\n        FETCH\tNEXT \n\t\tFROM\tKillCursor \n\t\tINTO\t@Spid  \n\tEND\n \nCLOSE\tKillCursor\n \nDEALLOCATE\tKillCursor"
+}

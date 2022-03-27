@@ -1,0 +1,8 @@
+{
+  "id": "9f6c6c98-9be8-4253-8724-6208863623e3",
+  "name": "WhoIsActive",
+  "prefix": "WhoIsActive",
+  "description": "",
+  "body": "EXEC master.dbo.sp_WhoIsActive",
+  "placeholders": []
+}

@@ -1,0 +1,8 @@
+{
+  "id": "95b0c7e4-3a76-433c-800b-4d9c4b92ec74",
+  "name": "ssti",
+  "prefix": "ssti",
+  "description": "Change the current STATISTICS TIME setting",
+  "body": "SET STATISTICS TIME, IO ON",
+  "placeholders": []
+}

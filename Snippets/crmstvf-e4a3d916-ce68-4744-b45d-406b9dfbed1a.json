@@ -1,0 +1,25 @@
+{
+  "id": "e4a3d916-ce68-4744-b45d-406b9dfbed1a",
+  "name": "crmstvf",
+  "prefix": "crmstvf",
+  "description": "Create multi-statement table-valued function",
+  "body": "/******************************************************************************************\\  \nProject\t    : $SCHEMA$\nObject Name : $NAME$\nObject Type : Multi-statement Table-valued Function\nCreated By  : $AUTHOR$\nCreated Date: $DATE(dd MMM yyyy)$\nApproved By :\nDescription : $DESCRIPTION$\n-------------------------------------------------------------------------------------------\nDemo Call:\n\n    SELECT *\n    FROM   $SCHEMA$.$NAME$()\n\n-------------------------------------------------------------------------------------------\nChanges History:\n================\nChanged By  : \nChanged Date: \nApproved By : \nDescription : \n-------------------------------------------------------------------------------------------\nChanged By  : \nChanged Date: \nApproved By : \nDescription : \n\\******************************************************************************************/\nCREATE OR ALTER FUNCTION $SCHEMA$.$NAME$\n  --(@parameter_name AS scalar_data_type ( = default_value ), ...)\nRETURNS @return_variable TABLE --table type definition\n--WITH ENCRYPTION|SCHEMABINDING, ...\nAS\nBEGIN\n  -- Function body here\n  RETURN\nEND\nGO\n",
+  "placeholders": [
+    {
+      "name": "SCHEMA",
+      "defaultValue": "Live"
+    },
+    {
+      "name": "NAME",
+      "defaultValue": ""
+    },
+    {
+      "name": "AUTHOR",
+      "defaultValue": ""
+    },
+    {
+      "name": "DESCRIPTION",
+      "defaultValue": ""
+    }
+  ]
+}

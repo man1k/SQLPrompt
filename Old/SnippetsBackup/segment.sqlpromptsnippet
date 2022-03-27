@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets>
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>segment</Title>
+      <Shortcut>segment</Shortcut>
+      <Description>Segment adhoc query</Description>
+      <Author />
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+    </Header>
+    <Snippet>
+      <Declarations />
+      <Code Language="sql"><![CDATA[USE TradeNetworks;
+GO
+
+SET NOCOUNT ON;
+
+DROP TABLE IF EXISTS #LeadSegments;
+
+RAISERROR ('Prepare the list to be intserted!', 0, 1) WITH NOWAIT;
+
+SELECT
+     ls.LeadId       AS LeadId
+   , 8               AS DimensionId
+   , ls.SegmentValue AS SegmentValue
+   , NULL            AS RuleId
+   , GETDATE ()      AS LastUpdatedDateTime
+   , 1               AS LastUpdatedByUserId
+INTO #LeadSegments
+FROM (
+         VALUES (
+                    7434888, 2
+                )
+              , (
+                    8101619, 2
+                )
+     ) AS ls (LeadId, SegmentValue);
+
+RAISERROR ('     - (%10u rows affected)', 0, 1, @@ROWCOUNT) WITH NOWAIT;
+
+RAISERROR ('Delete Existing data!', 0, 1) WITH NOWAIT;
+
+DELETE FROM CRM.LeadSegments
+WHERE DimensionId = 8;
+
+RAISERROR ('     - (%10u rows affected)', 0, 1, @@ROWCOUNT) WITH NOWAIT;
+
+RAISERROR ('Insert new for existing leads!', 0, 1) WITH NOWAIT;
+
+INSERT INTO CRM.LeadSegments (
+                                 LeadId
+                               , DimensionId
+                               , SegmentValue
+                               , RuleId
+                               , LastUpdatedDateTime
+                               , LastUpdatedByUserId
+                             )
+            SELECT
+                 tls.LeadId
+               , tls.DimensionId
+               , tls.SegmentValue
+               , tls.RuleId
+               , tls.LastUpdatedDateTime
+               , tls.LastUpdatedByUserId
+            FROM #LeadSegments AS tls
+            WHERE
+                 EXISTS (
+                            SELECT 1
+                            FROM   CRM.Leads AS l
+                            WHERE  tls.LeadId = l.LeadId
+                        );
+
+RAISERROR ('     - (%10u rows affected)', 0, 1, @@ROWCOUNT) WITH NOWAIT;
+
+RAISERROR ('Show list of missing leads!', 0, 1) WITH NOWAIT;
+
+SELECT
+      tls.LeadId
+    , tls.DimensionId
+    , tls.SegmentValue
+    , tls.RuleId
+    , tls.LastUpdatedDateTime
+    , tls.LastUpdatedByUserId
+FROM  #LeadSegments AS tls
+WHERE NOT EXISTS (
+                     SELECT 1
+                     FROM   CRM.Leads AS l
+                     WHERE  tls.LeadId = l.LeadId
+                 );
+
+]]></Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

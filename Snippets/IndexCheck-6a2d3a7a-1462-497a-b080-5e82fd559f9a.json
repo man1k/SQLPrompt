@@ -1,0 +1,21 @@
+{
+  "id": "6a2d3a7a-1462-497a-b080-5e82fd559f9a",
+  "name": "IndexCheck",
+  "prefix": "IndexCheck",
+  "description": "Exec sp_BlitzIndex for specific table",
+  "body": "EXEC master.dbo.sp_BlitzIndex\n    @DatabaseName = '$DatabaseName$'\n  , @SchemaName = '$SchemaName$'\n  , @TableName = '$TableName$' \n  ",
+  "placeholders": [
+    {
+      "name": "DatabaseName",
+      "defaultValue": "TradeNetworks"
+    },
+    {
+      "name": "SchemaName",
+      "defaultValue": "SchemaName"
+    },
+    {
+      "name": "TableName",
+      "defaultValue": ""
+    }
+  ]
+}

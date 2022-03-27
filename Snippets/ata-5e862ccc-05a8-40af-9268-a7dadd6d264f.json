@@ -1,0 +1,17 @@
+{
+  "id": "5e862ccc-05a8-40af-9268-a7dadd6d264f",
+  "name": "ata",
+  "prefix": "ata",
+  "description": "Add column",
+  "body": "ALTER TABLE $table_name$ ADD $column_name$ $SELECTIONEND$INT$SELECTIONSTART$",
+  "placeholders": [
+    {
+      "name": "table_name",
+      "defaultValue": "[schema].[table_name]"
+    },
+    {
+      "name": "column_name",
+      "defaultValue": "[$column_name$]"
+    }
+  ]
+}

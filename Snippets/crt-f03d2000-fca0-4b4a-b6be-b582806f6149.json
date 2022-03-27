@@ -1,0 +1,17 @@
+{
+  "id": "f03d2000-fca0-4b4a-b6be-b582806f6149",
+  "name": "crt",
+  "prefix": "crt",
+  "description": "Create table",
+  "body": "CREATE TABLE $SchemaName$.$TableName$ (\n    $TableName$Id INT NOT NULL IDENTITY (1,1) NOT FOR REPLICATION\n  , $CURSOR$\n  , CONSTRAINT PK_$TableName$ PRIMARY KEY CLUSTERED ($TableName$Id) WITH (DATA_COMPRESSION = PAGE, FILLFACTOR = 100)\n)",
+  "placeholders": [
+    {
+      "name": "SchemaName",
+      "defaultValue": "dbo"
+    },
+    {
+      "name": "TableName",
+      "defaultValue": ""
+    }
+  ]
+}

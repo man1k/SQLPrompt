@@ -1,0 +1,8 @@
+{
+  "id": "9212fdf8-79bc-4f13-aa01-5caea6b151ca",
+  "name": "ff",
+  "prefix": "ff",
+  "description": "Disable SQL Prompt formating for part of the code",
+  "body": "-- SQL Prompt formatting off\n$CURSOR$\n-- SQL Prompt formatting on",
+  "placeholders": []
+}

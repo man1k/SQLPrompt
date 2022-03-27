@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets>
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>IndexCheck</Title>
+      <Shortcut>IndexCheck</Shortcut>
+      <Description>Exec sp_BlitzIndex for specific table</Description>
+      <Author />
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+    </Header>
+    <Snippet>
+      <Declarations>
+        <Literal>
+          <ID>DatabaseName</ID>
+          <ToolTip />
+          <Default>TradeNetworks</Default>
+        </Literal>
+        <Literal>
+          <ID>SchemaName</ID>
+          <ToolTip />
+          <Default>SchemaName</Default>
+        </Literal>
+        <Literal>
+          <ID>TableName</ID>
+          <ToolTip />
+          <Default />
+        </Literal>
+      </Declarations>
+      <Code Language="sql"><![CDATA[EXEC master.dbo.sp_BlitzIndex
+    @DatabaseName = '$DatabaseName$'
+  , @SchemaName = '$SchemaName$'
+  , @TableName = '$TableName$' 
+  ]]></Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

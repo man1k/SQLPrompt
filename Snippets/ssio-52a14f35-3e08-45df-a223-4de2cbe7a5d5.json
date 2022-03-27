@@ -1,0 +1,13 @@
+{
+  "id": "52a14f35-3e08-45df-a223-4de2cbe7a5d5",
+  "name": "ssio",
+  "prefix": "ssio",
+  "description": "Set Identity Insert",
+  "body": " SET IDENTITY_INSERT $table_name$ ON \n \n \n SET IDENTITY_INSERT $table_name$ OFF ",
+  "placeholders": [
+    {
+      "name": "table_name",
+      "defaultValue": ""
+    }
+  ]
+}

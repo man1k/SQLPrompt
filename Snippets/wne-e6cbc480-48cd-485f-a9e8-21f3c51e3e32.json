@@ -1,0 +1,12 @@
+{
+  "id": "e6cbc480-48cd-485f-a9e8-21f3c51e3e32",
+  "prefix": "wne",
+  "description": "Add WHERE NOT EXISTS",
+  "body": "WHERE  NOT EXISTS (\r\n                      SELECT TOP 1 1\r\n                      FROM   $TargetTable$\r\n                      WHERE\r\n                             $CURSOR$\r\n                  );",
+  "placeholders": [
+    {
+      "name": "TargetTable",
+      "defaultValue": "dbo.Table"
+    }
+  ]
+}

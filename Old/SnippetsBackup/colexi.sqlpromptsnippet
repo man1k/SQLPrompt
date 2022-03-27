@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets>
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>colexi</Title>
+      <Shortcut>colexi</Shortcut>
+      <Description>Check if column exists</Description>
+      <Author />
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+    </Header>
+    <Snippet>
+      <Declarations />
+      <Code Language="sql"><![CDATA[IF COL_LENGTH('schemaName.tableName','columnName') IS NULL 
+BEGIN 
+
+END
+ ]]></Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

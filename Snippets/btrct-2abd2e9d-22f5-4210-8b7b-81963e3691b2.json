@@ -1,0 +1,8 @@
+{
+  "id": "2abd2e9d-22f5-4210-8b7b-81963e3691b2",
+  "name": "btrct",
+  "prefix": "btrct",
+  "description": "Surround with BEGIN TRANSACTION ... ROLLBACK TRANSACTION --COMMIT TRANSACTION",
+  "body": "BEGIN TRANSACTION\n\n$SELECTEDTEXT$\n$CURSOR$\nROLLBACK TRANSACTION\n--COMMIT TRANSACTION",
+  "placeholders": []
+}

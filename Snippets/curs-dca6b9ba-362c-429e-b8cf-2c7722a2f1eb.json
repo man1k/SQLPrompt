@@ -1,0 +1,25 @@
+{
+  "id": "dca6b9ba-362c-429e-b8cf-2c7722a2f1eb",
+  "name": "curs",
+  "prefix": "curs",
+  "description": "Fast-forward read-only cursor",
+  "body": "/* declare variables */\nDECLARE\n\t@$variable_name$ $variable_type$\n\nDECLARE $cursor_name$ CURSOR LOCAL STATIC READ_ONLY FORWARD_ONLY\nFOR\n\t$select_statement$\n\nOPEN $cursor_name$\n\nFETCH NEXT FROM $cursor_name$ INTO @$variable_name$\n\nWHILE @@FETCH_STATUS = 0\nBEGIN\n\n    $CURSOR$\n\n\tFETCH NEXT FROM $cursor_name$ INTO @$variable_name$\nEND\n\nCLOSE $cursor_name$\nDEALLOCATE $cursor_name$\n",
+  "placeholders": [
+    {
+      "name": "variable_name",
+      "defaultValue": ""
+    },
+    {
+      "name": "variable_type",
+      "defaultValue": ""
+    },
+    {
+      "name": "cursor_name",
+      "defaultValue": ""
+    },
+    {
+      "name": "select_statement",
+      "defaultValue": ""
+    }
+  ]
+}

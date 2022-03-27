@@ -1,0 +1,8 @@
+{
+  "id": "840471c3-b6ea-41b2-980a-0973230545cc",
+  "name": "colexi",
+  "prefix": "colexi",
+  "description": "Check if column exists",
+  "body": "IF COL_LENGTH('schemaName.tableName','columnName') IS NULL \nBEGIN \n\nEND\n ",
+  "placeholders": []
+}

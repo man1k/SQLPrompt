@@ -1,0 +1,8 @@
+{
+  "id": "7887ab7e-fd74-4d62-9247-79f0087f58ea",
+  "name": "jobhistory",
+  "prefix": "jobhistory",
+  "description": "",
+  "body": "\nSELECT\n    j.name,\n    h.run_status,\n    durationHHMMSS = STUFF(STUFF(REPLACE(STR(h.run_duration,7,0),\n        ' ','0'),4,0,':'),7,0,':'),\n    [start_date] = CONVERT(DATETIME, RTRIM(run_date) + ' '\n        + STUFF(STUFF(REPLACE(STR(RTRIM(h.run_time),6,0),\n        ' ','0'),3,0,':'),6,0,':'))\nFROM\n    msdb.dbo.sysjobs AS j\nINNER JOIN\n    (\n        SELECT job_id, instance_id = MAX(instance_id)\n            FROM msdb.dbo.sysjobhistory\n            GROUP BY job_id\n    ) AS l\n    ON j.job_id = l.job_id\nINNER JOIN\n    msdb.dbo.sysjobhistory AS h\n    ON h.job_id = l.job_id\n    AND h.instance_id = l.instance_id\nORDER BY\n    [start_date] DESC,\n\tCONVERT(INT, h.run_duration) DESC;",
+  "placeholders": []
+}

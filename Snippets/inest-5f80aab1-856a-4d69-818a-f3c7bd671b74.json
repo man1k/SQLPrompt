@@ -1,0 +1,13 @@
+{
+  "id": "5f80aab1-856a-4d69-818a-f3c7bd671b74",
+  "name": "inest",
+  "prefix": "inest",
+  "description": "IF NOT EXISTS",
+  "body": "IF NOT EXISTS (SELECT TOP 1 1 FROM $table_name$ WHERE $CURSOR$)",
+  "placeholders": [
+    {
+      "name": "table_name",
+      "defaultValue": "[schema].[table_name]"
+    }
+  ]
+}

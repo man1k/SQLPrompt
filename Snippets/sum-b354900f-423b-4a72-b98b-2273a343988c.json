@@ -1,0 +1,8 @@
+{
+  "id": "b354900f-423b-4a72-b98b-2273a343988c",
+  "name": "sum",
+  "prefix": "sum",
+  "description": "Surround with SUM()",
+  "body": "SUM($SELECTEDTEXT$)",
+  "placeholders": []
+}

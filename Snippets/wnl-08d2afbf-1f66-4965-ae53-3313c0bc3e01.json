@@ -1,0 +1,6 @@
+{
+  "id": "08d2afbf-1f66-4965-ae53-3313c0bc3e01",
+  "prefix": "wnl",
+  "description": "Add WITH (NOLOCK)",
+  "body": "WITH (NOLOCK)"
+}

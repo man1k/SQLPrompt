@@ -1,0 +1,25 @@
+{
+  "id": "c9c79ac9-dcee-4fed-82c1-fe3883fce632",
+  "name": "critvf",
+  "prefix": "critvf",
+  "description": "Create inline table-valued function",
+  "body": "/******************************************************************************************\\  \nProject\t    : $SCHEMA$\nObject Name : $NAME$\nObject Type : Inline table-valued function\nCreated By  : $AUTHOR$\nCreated Date: $DATE(dd MMM yyyy)$\nApproved By :\nDescription : $DESCRIPTION$\n-------------------------------------------------------------------------------------------\nDemo Call:\n\n    SELECT *\n    FROM   $SCHEMA$.$NAME$()\n\n-------------------------------------------------------------------------------------------\nChanges History:\n================\nChanged By  : \nChanged Date: \nApproved By : \nDescription : \n-------------------------------------------------------------------------------------------\nChanged By  : \nChanged Date: \nApproved By : \nDescription : \n\\******************************************************************************************/\nCREATE OR ALTER FUNCTION $SCHEMA$.$NAME$\n    (@parameter_name AS INT)\nRETURNS TABLE\n--WITH ENCRYPTION|SCHEMABINDING, ...\nAS\nRETURN ( $SELECTEDTEXT$$CURSOR$ )\nGO\n",
+  "placeholders": [
+    {
+      "name": "SCHEMA",
+      "defaultValue": "Live"
+    },
+    {
+      "name": "NAME",
+      "defaultValue": ""
+    },
+    {
+      "name": "AUTHOR",
+      "defaultValue": ""
+    },
+    {
+      "name": "DESCRIPTION",
+      "defaultValue": ""
+    }
+  ]
+}

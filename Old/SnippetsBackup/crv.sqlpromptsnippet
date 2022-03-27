@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets>
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>crv</Title>
+      <Shortcut>crv</Shortcut>
+      <Description>Create view</Description>
+      <Author />
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+    </Header>
+    <Snippet>
+      <Declarations>
+        <Literal>
+          <ID>SCHEMA</ID>
+          <ToolTip />
+          <Default>Live</Default>
+        </Literal>
+        <Literal>
+          <ID>NAME</ID>
+          <ToolTip />
+          <Default />
+        </Literal>
+        <Literal>
+          <ID>AUTHOR</ID>
+          <ToolTip />
+          <Default />
+        </Literal>
+        <Literal>
+          <ID>DESCRIPTION</ID>
+          <ToolTip />
+          <Default />
+        </Literal>
+      </Declarations>
+      <Code Language="sql"><![CDATA[/******************************************************************************************\  
+Project     : $SCHEMA$
+Object Name : $NAME$
+Object Type : View
+Created By  : $AUTHOR$
+Created Date: $DATE(dd MMM yyyy)$
+Approved By :
+Description : $DESCRIPTION$
+-------------------------------------------------------------------------------------------
+Demo Call:
+
+    SELECT *
+    FROM   $SCHEMA$.$NAME$
+
+-------------------------------------------------------------------------------------------
+Changes History:
+================
+Changed By  : 
+Changed Date: 
+Approved By : 
+Description : 
+-------------------------------------------------------------------------------------------
+Changed By  : 
+Changed Date: 
+Approved By : 
+Description : 
+\******************************************************************************************/
+CREATE OR ALTER VIEW $SCHEMA$.$NAME$
+--WITH ENCRYPTION, SCHEMABINDING, VIEW_METADATA
+AS
+    $SELECTEDTEXT$$CURSOR$
+-- WITH CHECK OPTION
+GO
+]]></Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

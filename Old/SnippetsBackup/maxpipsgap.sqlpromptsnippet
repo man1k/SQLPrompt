@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets>
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>maxpipsgap</Title>
+      <Shortcut>maxpipsgap</Shortcut>
+      <Description>Change Max pips gap for symbols</Description>
+      <Author />
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+    </Header>
+    <Snippet>
+      <Declarations>
+        <Literal>
+          <ID>TaskId</ID>
+          <ToolTip />
+          <Default />
+        </Literal>
+        <Literal>
+          <ID>version</ID>
+          <ToolTip />
+          <Default />
+        </Literal>
+      </Declarations>
+      <Code Language="sql"><![CDATA[USE TradeNetworks;
+GO
+IF NOT EXISTS (
+                  SELECT TOP 1
+                         1
+                  FROM   Debugs.sys.schemas AS s
+                  WHERE  s.name = 'V$version$'
+              )
+BEGIN
+    EXEC Debugs.sys.sp_executesql N'CREATE SCHEMA [V$version$];';
+END;
+GO
+
+BEGIN TRANSACTION;
+
+DROP TABLE IF EXISTS #TradingDefinitions;
+
+SELECT
+           s.SymbolId
+         , td.SymbolDisplayName
+         , td.MaxPipsGapForUser
+         , td.MaxPipsGapForDealingRoom
+INTO       #TradingDefinitions
+FROM       (
+               VALUES (
+                          'BITA Palladium-10', 5000, 5000
+                      )
+                    , (
+                          'Argentum-10', 5000, 5000
+                      )
+                   
+           )               AS td (SymbolDisplayName, MaxPipsGapForUser, MaxPipsGapForDealingRoom)
+INNER JOIN Dealing.Symbols AS s
+        ON td.SymbolDisplayName = s.DisplayName;
+
+
+
+IF OBJECT_ID ('Debugs.[V7.5].TradeNetworks_Live_TradingDefinitions_$TaskId$') IS NULL
+    SELECT
+              td.TradingDefinitionId
+            , td.MaxPipsGapForUser
+            , td.MaxPipsGapForDealingRoom
+    INTO      Debugs.[V7.5].TradeNetworks_Live_TradingDefinitions_$TaskId$
+    FROM
+              Live.TradingDefinitions AS td
+   INNER JOIN #TradingDefinitions     AS ttd
+           ON td.SymbolId = ttd.SymbolId;
+
+UPDATE     td
+SET
+           td.MaxPipsGapForUser = ttd.MaxPipsGapForUser
+         , td.MaxPipsGapForDealingRoom = ttd.MaxPipsGapForDealingRoom
+         , td.LastUpdatedDateTime = GETDATE ()
+         , td.LastUpdatedByUserId = 1
+FROM
+           Live.TradingDefinitions                                    AS td
+INNER JOIN Debugs.[V7.5].TradeNetworks_Live_TradingDefinitions_$TaskId$ AS rtd
+        ON td.TradingDefinitionId = rtd.TradingDefinitionId
+INNER JOIN #TradingDefinitions                                        AS ttd
+        ON td.SymbolId            = ttd.SymbolId;
+
+ROLLBACK TRANSACTION;
+--COMMIT TRANSACTION;
+
+
+
+
+]]></Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

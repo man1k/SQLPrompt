@@ -1,0 +1,17 @@
+{
+  "id": "6f598af1-0aaf-4868-95b0-3571ed6c3f7d",
+  "name": "Repl",
+  "prefix": "Repl",
+  "description": "Replace",
+  "body": "REPLACE ($SELECTEDTEXT$, $KAKVO$, $SKAKVO$)$CURSOR$",
+  "placeholders": [
+    {
+      "name": "KAKVO",
+      "defaultValue": ""
+    },
+    {
+      "name": "SKAKVO",
+      "defaultValue": ""
+    }
+  ]
+}

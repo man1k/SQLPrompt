@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets>
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>crt</Title>
+      <Shortcut>crt</Shortcut>
+      <Description>Create table</Description>
+      <Author />
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+    </Header>
+    <Snippet>
+      <Declarations>
+        <Literal>
+          <ID>SchemaName</ID>
+          <ToolTip />
+          <Default>dbo</Default>
+        </Literal>
+        <Literal>
+          <ID>TableName</ID>
+          <ToolTip />
+          <Default />
+        </Literal>
+      </Declarations>
+      <Code Language="sql"><![CDATA[CREATE TABLE $SchemaName$.$TableName$ (
+    $TableName$Id INT NOT NULL IDENTITY (1,1) NOT FOR REPLICATION
+  , $CURSOR$
+  , CONSTRAINT PK_$TableName$ PRIMARY KEY CLUSTERED ($TableName$Id) WITH (DATA_COMPRESSION = PAGE, FILLFACTOR = 100)
+)]]></Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

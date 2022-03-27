@@ -1,0 +1,8 @@
+{
+  "id": "7f5caf31-a777-45e1-8237-2a1b6ed53456",
+  "name": "tc",
+  "prefix": "tc",
+  "description": "TRY ... CATCH fragment",
+  "body": "BEGIN TRY\n    $SELECTEDTEXT$\n    $CURSOR$\nEND TRY\nBEGIN CATCH\n    IF @@TRANCOUNT > 0\n\t    ROLLBACK TRANSACTION\n\n    DECLARE @ErrorStr NVARCHAR(4000)\n    SELECT  @ErrorStr = dbo.FlushErrorString_FN()\n    RAISERROR(@ErrorStr,16,1)\n    RETURN -1;\nEND CATCH",
+  "placeholders": []
+}

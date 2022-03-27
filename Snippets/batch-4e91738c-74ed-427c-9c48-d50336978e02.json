@@ -1,0 +1,17 @@
+{
+  "id": "4e91738c-74ed-427c-9c48-d50336978e02",
+  "name": "batch",
+  "prefix": "batch",
+  "description": "Do specific operation on batches",
+  "body": "SET NOCOUNT ON\n\nDECLARE\n    @Message                   NVARCHAR (MAX) = ''\n  , @Debug                     BIT            = $DEBUG$\n  , @BatchSize                 INT            = $BATCHSIZE$\n  , @IterationNumber           INT            = 0\n  , @IterationStartDateTime    DATETIME2 (7)\n  , @IterationEndDateTime      DATETIME2 (7)\n  , @IterationAffectedRowCount INT            = 1;\n\nWHILE @IterationAffectedRowCount > 0\nBEGIN\n    IF (@Debug = 1)\n    BEGIN\n        SELECT\n            @IterationNumber        = @IterationNumber + 1\n          , @IterationStartDateTime = SYSDATETIME ();\n    END\n\n    /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*\\\n    \tINSERT HERE THE OPERATION YOU WANT TO BE ON BATCHES\n    \\*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/\n    $CURSOR$\n\n    SELECT @IterationAffectedRowCount = @@ROWCOUNT;\n\n    IF (@Debug = 1)\n    BEGIN\n        SELECT @IterationEndDateTime = SYSDATETIME ();\n        SELECT @Message = N'Execution #: ' + CAST(@IterationNumber AS VARCHAR (10)) + N'; Affected Rows: ' + CAST(@IterationAffectedRowCount AS VARCHAR (10)) + N'; Execution Time (ms): ' + CAST(DATEDIFF (MILLISECOND, @IterationStartDateTime, @IterationEndDateTime) AS VARCHAR (10));\n\n        RAISERROR (@Message, 0, 1) WITH NOWAIT;\n    END;\nEND;",
+  "placeholders": [
+    {
+      "name": "BATCHSIZE",
+      "defaultValue": "10000"
+    },
+    {
+      "name": "DEBUG",
+      "defaultValue": "1"
+    }
+  ]
+}

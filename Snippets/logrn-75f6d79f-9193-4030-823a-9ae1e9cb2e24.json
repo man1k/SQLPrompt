@@ -1,0 +1,8 @@
+{
+  "id": "75f6d79f-9193-4030-823a-9ae1e9cb2e24",
+  "name": "logrn",
+  "prefix": "logrn",
+  "description": "Immediatelly print message with the affected rows (uses RAISERROR)",
+  "body": "\nRAISERROR ('     - (%10u rows affected)', 0, 1, @@ROWCOUNT) WITH NOWAIT;\n",
+  "placeholders": []
+}

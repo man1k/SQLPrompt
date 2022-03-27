@@ -1,0 +1,8 @@
+{
+  "id": "fbe19976-8464-4e57-a627-c63457096422",
+  "name": "st10",
+  "prefix": "st10",
+  "description": "SELECT TOP 10 rows",
+  "body": "SELECT TOP 10 *\nFROM ",
+  "placeholders": []
+}

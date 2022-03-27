@@ -1,0 +1,25 @@
+{
+  "id": "af6025cd-7159-49f2-810a-cd58dd5722c6",
+  "name": "crtr",
+  "prefix": "crtr",
+  "description": "Create Trigger",
+  "body": "/******************************************************************************************\\  \nProject     : $SchemaName$\nObject Name : TInsUpdDel_$TableName$\nObject Type : TRIGGER\nCreated By  : $AUTHOR$\nCreated Date: $DATE(dd MMM yyyy)$\nApproved By :\nDescription : $DESCRIPTION$\n-------------------------------------------------------------------------------------------\n\n-------------------------------------------------------------------------------------------\nChanges History:\n================\nChanged By  : \nChanged Date: \nApproved By : \nDescription : \n-------------------------------------------------------------------------------------------\nChanged By  : \nChanged Date: \nApproved By : \nDescription : \n\\******************************************************************************************/\nCREATE OR ALTER TRIGGER $SchemaName$.TInsUpdDel_$TableName$\nON $SchemaName$.$TableName$\nAFTER DELETE, INSERT, UPDATE\nAS\nBEGIN\n    SET NOCOUNT ON;\n\n    $CURSOR$\nEND;\nGO\n",
+  "placeholders": [
+    {
+      "name": "SchemaName",
+      "defaultValue": ""
+    },
+    {
+      "name": "TableName",
+      "defaultValue": ""
+    },
+    {
+      "name": "AUTHOR",
+      "defaultValue": ""
+    },
+    {
+      "name": "DESCRIPTION",
+      "defaultValue": ""
+    }
+  ]
+}

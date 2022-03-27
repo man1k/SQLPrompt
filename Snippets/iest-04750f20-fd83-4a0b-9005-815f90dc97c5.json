@@ -1,0 +1,13 @@
+{
+  "id": "04750f20-fd83-4a0b-9005-815f90dc97c5",
+  "name": "iest",
+  "prefix": "iest",
+  "description": "IF EXISTS ( ... )",
+  "body": "IF EXISTS (SELECT TOP 1 1 FROM $table_name$ WHERE $CURSOR$)",
+  "placeholders": [
+    {
+      "name": "table_name",
+      "defaultValue": "[schema].[table_name]"
+    }
+  ]
+}

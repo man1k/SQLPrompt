@@ -1,0 +1,126 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets>
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>CopyBonusStrategy</Title>
+      <Shortcut>CopyBonusStrategy</Shortcut>
+      <Description />
+      <Author />
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+    </Header>
+    <Snippet>
+      <Declarations />
+      <Code Language="sql"><![CDATA[USE LEADMANAGEMENT_4_BFOREX;
+GO
+
+BEGIN TRANSACTION;
+
+DECLARE @CopyFromOU INT;
+DECLARE @CopyToOU TABLE (
+    UnitId INT
+);
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*\ 
+	Get organization units unit id's (from and to)
+\*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+SELECT @CopyFromOU = ou.unit_id
+FROM   dbo.organization_units AS ou
+WHERE
+    --ou.name = 'Swedish Team';
+       ou.unit_id = 405; --  PC LATAM Team Santino
+             
+INSERT INTO @CopyToOU (
+                          UnitId
+                      )
+            SELECT ou.unit_id
+            FROM   dbo.organization_units AS ou
+            WHERE
+                --ou.name IN (
+                --               'Malaga M', 'Swedish Team', 'MM SWE'
+                --           );
+                   ou.unit_id IN (
+                                   423       -- PC LATAM Team Adriana
+                                 );
+
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*\ 
+	Prepare a temp table with data to insert
+\*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+IF OBJECT_ID ('tempdb..#organization_units_bonus_stategy_new_assoc') IS NOT NULL
+    DROP TABLE #organization_units_bonus_stategy_new_assoc;
+
+SELECT
+           cto.UnitId                  AS unit_id
+         , oubsna.bonus_strategy_id    AS bonus_strategy_id
+         , oubsna.effective_date_start AS effective_date_start
+         , oubsna.effective_date_end   AS effective_date_end
+         , oubsna.created_by           AS created_by
+         , oubsna.created_date         AS created_date
+         , oubsna.changed_by           AS changed_by
+         , oubsna.changed_date         AS changed_date
+INTO       #organization_units_bonus_stategy_new_assoc
+FROM
+           dbo.organization_units_bonus_stategy_new_assoc AS oubsna
+CROSS JOIN @CopyToOU                                      AS cto
+WHERE
+           oubsna.unit_id = @CopyFromOU
+       AND oubsna.effective_date_end IS NULL;
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*\ 
+	SELECT Before Insert state
+\*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+SELECT     *
+FROM
+           dbo.organization_units_bonus_stategy_new_assoc AS oubsna
+INNER JOIN @CopyToOU                                      AS cto
+        ON oubsna.unit_id = cto.UnitId;
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*\ 
+	INSERT missing data
+\*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+INSERT INTO dbo.organization_units_bonus_stategy_new_assoc (
+                                                               unit_id
+                                                             , bonus_strategy_id
+                                                             , effective_date_start
+                                                             , effective_date_end
+                                                             , created_by
+                                                             , created_date
+                                                             , changed_by
+                                                             , changed_date
+                                                           )
+            SELECT
+                  toubsna.unit_id
+                , toubsna.bonus_strategy_id
+                , toubsna.effective_date_start
+                , toubsna.effective_date_end
+                , toubsna.created_by
+                , toubsna.created_date
+                , toubsna.changed_by
+                , toubsna.changed_date
+            FROM  #organization_units_bonus_stategy_new_assoc AS toubsna
+            WHERE NOT EXISTS (
+                                 SELECT *
+                                 FROM   dbo.organization_units_bonus_stategy_new_assoc AS oubsna
+                                 WHERE
+                                        oubsna.unit_id              = toubsna.unit_id
+                                    AND oubsna.bonus_strategy_id    = toubsna.bonus_strategy_id
+                                    AND oubsna.effective_date_start = toubsna.effective_date_start
+                             );
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*\ 
+	SELECT After Insert state
+\*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+SELECT     *
+FROM
+           dbo.organization_units_bonus_stategy_new_assoc AS oubsna
+INNER JOIN @CopyToOU                                      AS cto
+        ON oubsna.unit_id = cto.UnitId;
+
+ROLLBACK TRANSACTION;
+--COMMIT TRANSACTION;
+ ]]></Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

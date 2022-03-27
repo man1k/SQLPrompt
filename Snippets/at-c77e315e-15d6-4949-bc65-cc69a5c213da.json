@@ -1,0 +1,8 @@
+{
+  "id": "c77e315e-15d6-4949-bc65-cc69a5c213da",
+  "name": "at",
+  "prefix": "at",
+  "description": "ALTER TABLE fragment",
+  "body": "ALTER TABLE ",
+  "placeholders": []
+}

@@ -1,0 +1,25 @@
+{
+  "id": "78887e72-01fe-4c6b-96bb-91a5c96abb1c",
+  "name": "crsp",
+  "prefix": "crsp",
+  "description": "Create storred procedure",
+  "body": "/******************************************************************************************\\  \nProject     : $SCHEMA$\nObject Name : $NAME$\nObject Type : Storred Procedure\nCreated By  : $AUTHOR$\nCreated Date: $DATE(dd MMM yyyy)$\nApproved By :\nDescription : $DESCRIPTION$\n-------------------------------------------------------------------------------------------\nDemo Call:\n\n    EXEC $SCHEMA$.$NAME$\n\n-------------------------------------------------------------------------------------------\nChanges History:\n================\nChanged By  : \nChanged Date: \nApproved By : \nDescription : \n-------------------------------------------------------------------------------------------\nChanged By  : \nChanged Date: \nApproved By : \nDescription : \n\\******************************************************************************************/\nCREATE OR ALTER PROCEDURE $SCHEMA$.$NAME$ (\n)\nAS\n--WITH ENCRYPTION, SCHEMABINDING, VIEW_METADATA\nBEGIN\n    SET NOCOUNT ON\n\n    $SELECTEDTEXT$$CURSOR$\nEND\nGO",
+  "placeholders": [
+    {
+      "name": "SCHEMA",
+      "defaultValue": "Live"
+    },
+    {
+      "name": "NAME",
+      "defaultValue": ""
+    },
+    {
+      "name": "AUTHOR",
+      "defaultValue": ""
+    },
+    {
+      "name": "DESCRIPTION",
+      "defaultValue": ""
+    }
+  ]
+}

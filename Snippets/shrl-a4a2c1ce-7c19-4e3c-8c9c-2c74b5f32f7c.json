@@ -1,0 +1,13 @@
+{
+  "id": "a4a2c1ce-7c19-4e3c-8c9c-2c74b5f32f7c",
+  "name": "shrl",
+  "prefix": "shrl",
+  "description": "Run DBCC SHRINKFILE log",
+  "body": "USE $DBNAME$\nGO\nCHECKPOINT\nGO\nDBCC SHRINKFILE ('$DBNAME$_log', $FileSize$)\nGO\n--ALTER DATABASE $DBNAME$ MODIFY FILE (NAME = '$DBNAME$_log', SIZE = $FileSize$MB)\n",
+  "placeholders": [
+    {
+      "name": "FileSize",
+      "defaultValue": "1024"
+    }
+  ]
+}

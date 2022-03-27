@@ -1,0 +1,8 @@
+{
+  "id": "54384327-c6b7-4585-bcc9-c1002ce06ff4",
+  "name": "shrt",
+  "prefix": "shrt",
+  "description": "Shrink tempdb files",
+  "body": "USE tempdb\nGO\nDBCC DROPCLEANBUFFERS\nGO\nDBCC FREEPROCCACHE\nDBCC FREESESSIONCACHE\nDBCC FREESYSTEMCACHE ('ALL')\nGO\n\nDECLARE @SQL NVARCHAR(MAX) = ''\n\nSELECT @SQL += 'DBCC SHRINKFILE (''' + name + ''', 1024)'\nFROM sys.database_files AS df\nWHERE\n\tdf.type = 0\n\nEXEC sys.sp_executesql @SQL\n",
+  "placeholders": []
+}

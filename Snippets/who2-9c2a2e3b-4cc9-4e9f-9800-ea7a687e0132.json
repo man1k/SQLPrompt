@@ -1,0 +1,8 @@
+{
+  "id": "9c2a2e3b-4cc9-4e9f-9800-ea7a687e0132",
+  "name": "who2",
+  "prefix": "who2",
+  "description": "Insert sp_who2 into a table",
+  "body": "DROP TABLE IF EXISTS #temptable;\n\nCREATE TABLE #temptable (\n    SPID        INT\n  , Status      VARCHAR (1000)\n  , LoginName   SYSNAME         NULL\n  , HostName    SYSNAME         NULL\n  , BlkBy       SYSNAME         NULL\n  , DBName      SYSNAME         NULL\n  , Command     NVARCHAR (1000) NULL\n  , CPUTime     INT             NULL\n  , DiskIO      INT             NULL\n  , LastBatch   VARCHAR (1000)  NULL\n  , ProgramName VARCHAR (1000)  NULL\n  , SPID2       INT             NULL\n  , REQUESTID   INT             NULL\n);\n\nINSERT INTO #temptable (\n                           SPID\n                         , Status\n                         , LoginName\n                         , HostName\n                         , BlkBy\n                         , DBName\n                         , Command\n                         , CPUTime\n                         , DiskIO\n                         , LastBatch\n                         , ProgramName\n                         , SPID2\n                         , REQUESTID\n                       )\n        EXEC sys.sp_who2;\n\nSELECT *\nFROM   #temptable AS t\n$CURSOR$",
+  "placeholders": []
+}

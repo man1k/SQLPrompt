@@ -1,0 +1,12 @@
+{
+  "id": "ab814601-15ea-4e54-a2ae-ad9fc3f5ec99",
+  "prefix": "log",
+  "description": "Immediatelly prin a message (uses RAISERROR)",
+  "body": "RAISERROR ('$SELECTEDTEXT$$LogText$', 0, 1) WITH NOWAIT\n$CURSOR$",
+  "placeholders": [
+    {
+      "name": "LogText",
+      "defaultValue": null
+    }
+  ]
+}

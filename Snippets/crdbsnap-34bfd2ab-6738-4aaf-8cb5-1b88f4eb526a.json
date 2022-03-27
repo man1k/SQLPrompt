@@ -1,0 +1,16 @@
+{
+  "id": "34bfd2ab-6738-4aaf-8cb5-1b88f4eb526a",
+  "prefix": "crdbsnap",
+  "description": "Create Dataabse Snapshot",
+  "body": "DECLARE @SQL NVARCHAR (MAX);\r\n\r\nSELECT @SQL = N'CREATE DATABASE ' + t.SourceDatabase + N'$SnapshotSuffix$\r\nON  (\r\n        NAME = ' + t.SourceName + N'\r\n      , FILENAME = ''' + t.SnapshotFileName + N'''\r\n    ) AS SNAPSHOT OF ' + t.SourceDatabase + N';'\r\nFROM   (\r\n           SELECT\r\n                     d.name                                                                                                                                                      AS SourceDatabase\r\n                   , mf.name                                                                                                                                                     AS SourceName\r\n                   , REVERSE (SUBSTRING (REVERSE (mf.physical_name), CHARINDEX ('\\', REVERSE (mf.physical_name), 1), LEN (mf.physical_name))) + mf.name + '$SnapshotSuffix$.ss' AS SnapshotFileName\r\n           FROM\r\n                     sys.master_files AS mf\r\n          INNER JOIN sys.databases    AS d\r\n                  ON mf.database_id = d.database_id\r\n           WHERE\r\n                     d.name  = '$SourceDatabase$'\r\n                 AND mf.type = 0\r\n       ) AS t;\r\n\r\nEXEC sys.sp_executesql @SQL;\r\n",
+  "placeholders": [
+    {
+      "name": "SourceDatabase",
+      "defaultValue": "TradeNetworks"
+    },
+    {
+      "name": "SnapshotSuffix",
+      "defaultValue": "_SS"
+    }
+  ]
+}

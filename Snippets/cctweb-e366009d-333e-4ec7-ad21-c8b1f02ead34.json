@@ -1,0 +1,8 @@
+{
+  "id": "e366009d-333e-4ec7-ad21-c8b1f02ead34",
+  "name": "cctweb",
+  "prefix": "cctweb",
+  "description": "Create :CONNECT to all WEB Instances",
+  "body": ":CONNECT SOFDEVWEB\n:CONNECT SOFQAWEB\n:CONNECT SOFSTWEB\n",
+  "placeholders": []
+}

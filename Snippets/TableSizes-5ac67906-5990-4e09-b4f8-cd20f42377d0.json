@@ -1,0 +1,8 @@
+{
+  "id": "5ac67906-5990-4e09-b4f8-cd20f42377d0",
+  "name": "TableSizes",
+  "prefix": "TableSizes",
+  "description": "A query which displays the sizes of all tables",
+  "body": "SELECT \n    t.NAME AS TableName,\n    s.Name AS SchemaName,\n    p.rows AS RowCounts,\n    SUM(a.total_pages) * 8 AS TotalSpaceKB, \n    CAST(ROUND(((SUM(a.total_pages) * 8) / 1024.00), 2) AS NUMERIC(36, 2)) AS TotalSpaceMB,\n    SUM(a.used_pages) * 8 AS UsedSpaceKB, \n    CAST(ROUND(((SUM(a.used_pages) * 8) / 1024.00), 2) AS NUMERIC(36, 2)) AS UsedSpaceMB, \n    (SUM(a.total_pages) - SUM(a.used_pages)) * 8 AS UnusedSpaceKB,\n    CAST(ROUND(((SUM(a.total_pages) - SUM(a.used_pages)) * 8) / 1024.00, 2) AS NUMERIC(36, 2)) AS UnusedSpaceMB\nFROM \n    sys.tables t\nINNER JOIN      \n    sys.indexes i ON t.OBJECT_ID = i.object_id\nINNER JOIN \n    sys.partitions p ON i.object_id = p.OBJECT_ID AND i.index_id = p.index_id\nINNER JOIN \n    sys.allocation_units a ON p.partition_id = a.container_id\nLEFT OUTER JOIN \n    sys.schemas s ON t.schema_id = s.schema_id\nWHERE \n    t.NAME NOT LIKE 'dt%' \n    AND t.is_ms_shipped = 0\n    AND i.OBJECT_ID > 255 \nGROUP BY \n    t.Name, s.Name, p.Rows\nORDER BY \n    t.Name",
+  "placeholders": []
+}

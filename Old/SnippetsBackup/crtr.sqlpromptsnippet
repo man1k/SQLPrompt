@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets>
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>crtr</Title>
+      <Shortcut>crtr</Shortcut>
+      <Description>Create Trigger</Description>
+      <Author />
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+    </Header>
+    <Snippet>
+      <Declarations>
+        <Literal>
+          <ID>SchemaName</ID>
+          <ToolTip />
+          <Default />
+        </Literal>
+        <Literal>
+          <ID>TableName</ID>
+          <ToolTip />
+          <Default />
+        </Literal>
+        <Literal>
+          <ID>AUTHOR</ID>
+          <ToolTip />
+          <Default />
+        </Literal>
+        <Literal>
+          <ID>DESCRIPTION</ID>
+          <ToolTip />
+          <Default />
+        </Literal>
+      </Declarations>
+      <Code Language="sql"><![CDATA[/******************************************************************************************\  
+Project     : $SchemaName$
+Object Name : TInsUpdDel_$TableName$
+Object Type : TRIGGER
+Created By  : $AUTHOR$
+Created Date: $DATE(dd MMM yyyy)$
+Approved By :
+Description : $DESCRIPTION$
+-------------------------------------------------------------------------------------------
+
+-------------------------------------------------------------------------------------------
+Changes History:
+================
+Changed By  : 
+Changed Date: 
+Approved By : 
+Description : 
+-------------------------------------------------------------------------------------------
+Changed By  : 
+Changed Date: 
+Approved By : 
+Description : 
+\******************************************************************************************/
+CREATE OR ALTER TRIGGER $SchemaName$.TInsUpdDel_$TableName$
+ON $SchemaName$.$TableName$
+AFTER DELETE, INSERT, UPDATE
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    $CURSOR$
+END;
+GO
+]]></Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

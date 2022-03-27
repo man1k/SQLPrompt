@@ -1,0 +1,25 @@
+{
+  "id": "e8874a94-337b-4f2a-a8c5-6c304ff31917",
+  "name": "crsf",
+  "prefix": "crsf",
+  "description": "Create scalar function",
+  "body": "/******************************************************************************************\\  \nProject     : $SCHEMA$\nObject Name : $NAME$\nObject Type : Scalar function\nCreated By  : $AUTHOR$\nCreated Date: $DATE(dd MMM yyyy)$\nApproved By :\nDescription : $DESCRIPTION$\n-------------------------------------------------------------------------------------------\nDemo Call:\n\n    SELECT $SCHEMA$.$NAME$()\n\n-------------------------------------------------------------------------------------------\nChanges History:\n================\nChanged By  : \nChanged Date: \nApproved By : \nDescription : \n-------------------------------------------------------------------------------------------\nChanged By  : \nChanged Date: \nApproved By : \nDescription : \n\\******************************************************************************************/\nCREATE OR ALTER FUNCTION $SCHEMA$.$NAME$\n    (@parameter_name AS INT)\nRETURNS INT\n--WITH ENCRYPTION|SCHEMABINDING, ...\nAS\nBEGIN\n    RETURN $SELECTEDTEXT$$CURSOR$\nEND\nGO\n",
+  "placeholders": [
+    {
+      "name": "SCHEMA",
+      "defaultValue": ""
+    },
+    {
+      "name": "NAME",
+      "defaultValue": ""
+    },
+    {
+      "name": "AUTHOR",
+      "defaultValue": ""
+    },
+    {
+      "name": "DESCRIPTION",
+      "defaultValue": ""
+    }
+  ]
+}

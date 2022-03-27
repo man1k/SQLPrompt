@@ -1,0 +1,8 @@
+{
+  "id": "f3405cea-aa70-49ca-8ec9-d4683d60f31e",
+  "name": "WhileLoopDatesDaybyDay",
+  "prefix": "WhileLoopDatesDaybyDay",
+  "description": "",
+  "body": "DECLARE\n    @MinDate DATE = '20150101'\n  , @MaxDate DATE = '20170802'\n  , @Id      INT\n  , @Day     DATE;\nDROP TABLE IF EXISTS #InsertedData;\nDROP TABLE IF EXISTS #Dates;\n\nCREATE TABLE #InsertedData (\n    InsertedId   INT\n  , InsertedDate DATE\n);\nWITH cte AS (\n                SELECT    TOP (DATEDIFF (DAY, @MinDate, @MaxDate) + 1)\n                          DATEADD (DAY, ROW_NUMBER () OVER (ORDER BY a.object_id) - 1, @MinDate) AS Date\n                FROM\n                          sys.all_objects AS a\n               CROSS JOIN sys.all_objects AS b\n            )\nSELECT\n         cte.Date\n       , IDENTITY(INT, 1, 1) AS Id\nINTO     #Dates\nFROM     cte\nORDER BY cte.Date DESC;\n\nSELECT @Id = MAX (d.Id)\nFROM   #Dates AS d;\n\n\nWHILE (@Id > 0)\nBEGIN\n\n    SELECT @Day = d.Date\n    FROM   #Dates AS d\n    WHERE  d.Id = @Id;\n\n    IF NOT EXISTS (\n                      SELECT TOP 1 1\n                      FROM   #InsertedData AS id\n                      WHERE  id.InsertedDate = @Day\n                  )\n    BEGIN\n\n        EXEC Live.GetEODAccountFinancialDataAtGivenDate @Date = @Day;\n\n    END;\n\n    PRINT CAST(@Day AS NVARCHAR (500));\n    SET @Id = @Id - 1;\nEND;\n\n\n\n",
+  "placeholders": []
+}

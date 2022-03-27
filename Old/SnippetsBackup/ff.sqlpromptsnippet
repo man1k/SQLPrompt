@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets>
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>ff</Title>
+      <Shortcut>ff</Shortcut>
+      <Description>Disable SQL Prompt formating for part of the code</Description>
+      <Author />
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+    </Header>
+    <Snippet>
+      <Declarations />
+      <Code Language="sql"><![CDATA[-- SQL Prompt formatting off
+$CURSOR$
+-- SQL Prompt formatting on]]></Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

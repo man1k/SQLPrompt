@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets>
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>crsp</Title>
+      <Shortcut>crsp</Shortcut>
+      <Description>Create storred procedure</Description>
+      <Author />
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+    </Header>
+    <Snippet>
+      <Declarations>
+        <Literal>
+          <ID>SCHEMA</ID>
+          <ToolTip />
+          <Default>Live</Default>
+        </Literal>
+        <Literal>
+          <ID>NAME</ID>
+          <ToolTip />
+          <Default />
+        </Literal>
+        <Literal>
+          <ID>AUTHOR</ID>
+          <ToolTip />
+          <Default />
+        </Literal>
+        <Literal>
+          <ID>DESCRIPTION</ID>
+          <ToolTip />
+          <Default />
+        </Literal>
+      </Declarations>
+      <Code Language="sql"><![CDATA[/******************************************************************************************\  
+Project     : $SCHEMA$
+Object Name : $NAME$
+Object Type : Storred Procedure
+Created By  : $AUTHOR$
+Created Date: $DATE(dd MMM yyyy)$
+Approved By :
+Description : $DESCRIPTION$
+-------------------------------------------------------------------------------------------
+Demo Call:
+
+    EXEC $SCHEMA$.$NAME$
+
+-------------------------------------------------------------------------------------------
+Changes History:
+================
+Changed By  : 
+Changed Date: 
+Approved By : 
+Description : 
+-------------------------------------------------------------------------------------------
+Changed By  : 
+Changed Date: 
+Approved By : 
+Description : 
+\******************************************************************************************/
+CREATE OR ALTER PROCEDURE $SCHEMA$.$NAME$ (
+)
+AS
+--WITH ENCRYPTION, SCHEMABINDING, VIEW_METADATA
+BEGIN
+    SET NOCOUNT ON
+
+    $SELECTEDTEXT$$CURSOR$
+END
+GO]]></Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

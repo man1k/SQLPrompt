@@ -1,0 +1,8 @@
+{
+  "id": "55e3a369-e705-4cf3-a06f-1f32aa956c34",
+  "name": "ccttn",
+  "prefix": "ccttn",
+  "description": "Create :CONNECT to all TN Instances",
+  "body": ":CONNECT SOFDEV1TN\n:CONNECT SOFDEV2TN\n:CONNECT SOFQA2TN\n:CONNECT SOFDEVTN\n:CONNECT SOFQATN\n:CONNECT SOFQAPRODTN\n:CONNECT SOFSTTN\n:CONNECT SOFLTTN\n:CONNECT SOFLTDTAKEMASK\n",
+  "placeholders": []
+}

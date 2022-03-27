@@ -1,0 +1,16 @@
+{
+  "id": "93f2734c-61e9-4517-9f66-217d462b15d6",
+  "prefix": "maxpipsgap",
+  "description": "Change Max pips gap for symbols",
+  "body": "USE TradeNetworks;\nGO\nIF NOT EXISTS (\n                  SELECT TOP 1\n                         1\n                  FROM   Debugs.sys.schemas AS s\n                  WHERE  s.name = 'V$version$'\n              )\nBEGIN\n    EXEC Debugs.sys.sp_executesql N'CREATE SCHEMA [V$version$];';\nEND;\nGO\n\nBEGIN TRANSACTION;\n\nDROP TABLE IF EXISTS #TradingDefinitions;\n\nSELECT\n           s.SymbolId\n         , td.SymbolDisplayName\n         , td.MaxPipsGapForUser\n         , td.MaxPipsGapForDealingRoom\nINTO       #TradingDefinitions\nFROM       (\n               VALUES (\n                          'BITA Palladium-10', 5000, 5000\n                      )\n                    , (\n                          'Argentum-10', 5000, 5000\n                      )\n                   \n           )               AS td (SymbolDisplayName, MaxPipsGapForUser, MaxPipsGapForDealingRoom)\nINNER JOIN Dealing.Symbols AS s\n        ON td.SymbolDisplayName = s.DisplayName;\n\n\n\nIF OBJECT_ID ('Debugs.[V7.5].TradeNetworks_Live_TradingDefinitions_$TaskId$') IS NULL\n    SELECT\n              td.TradingDefinitionId\n            , td.MaxPipsGapForUser\n            , td.MaxPipsGapForDealingRoom\n    INTO      Debugs.[V7.5].TradeNetworks_Live_TradingDefinitions_$TaskId$\n    FROM\n              Live.TradingDefinitions AS td\n   INNER JOIN #TradingDefinitions     AS ttd\n           ON td.SymbolId = ttd.SymbolId;\n\nUPDATE     td\nSET\n           td.MaxPipsGapForUser = ttd.MaxPipsGapForUser\n         , td.MaxPipsGapForDealingRoom = ttd.MaxPipsGapForDealingRoom\n         , td.LastUpdatedDateTime = GETDATE ()\n         , td.LastUpdatedByUserId = 1\nFROM\n           Live.TradingDefinitions                                    AS td\nINNER JOIN Debugs.[V7.5].TradeNetworks_Live_TradingDefinitions_$TaskId$ AS rtd\n        ON td.TradingDefinitionId = rtd.TradingDefinitionId\nINNER JOIN #TradingDefinitions                                        AS ttd\n        ON td.SymbolId            = ttd.SymbolId;\n\nROLLBACK TRANSACTION;\n--COMMIT TRANSACTION;\n\n\n\n\n",
+  "placeholders": [
+    {
+      "name": "TaskId",
+      "defaultValue": ""
+    },
+    {
+      "name": "version",
+      "defaultValue": ""
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "id": "a4a39f64-54ba-4194-a74a-144e9da42cf3",
+  "prefix": "logid",
+  "description": "Immediatelly prin a message (uses RAISERROR) IF @Debug is set",
+  "body": "IF (@Debug > 0)\r\n    RAISERROR ('$SELECTEDTEXT$$LogText$', 0, 1) WITH NOWAIT\r\n$CURSOR$",
+  "placeholders": [
+    {
+      "name": "LogText",
+      "defaultValue": null
+    }
+  ]
+}

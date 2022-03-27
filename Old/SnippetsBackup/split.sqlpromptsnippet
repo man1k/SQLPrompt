@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets>
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>split</Title>
+      <Shortcut>split</Shortcut>
+      <Description />
+      <Author />
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+    </Header>
+    <Snippet>
+      <Declarations />
+      <Code Language="sql"><![CDATA[USE LEADMANAGEMENT_4_BFOREX;
+GO
+
+BEGIN TRANSACTION;
+DECLARE @promotion_groups_list promotion_groups_list;
+INSERT INTO @promotion_groups_list
+VALUES  (
+           732, 733, 57
+       )
+     , (
+           732, 734, 43
+       );
+
+
+EXEC support.p_update_Stats_split_leads_to_groups
+    @promotion_groups_list = @promotion_groups_list
+  , @initcount = 1;
+
+ROLLBACK TRANSACTION;
+]]></Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

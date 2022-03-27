@@ -1,0 +1,6 @@
+{
+  "id": "0f4ad132-146a-4c80-b07b-2904e3ee066e",
+  "prefix": "split",
+  "description": "",
+  "body": "USE LEADMANAGEMENT_4_BFOREX;\nGO\n\nBEGIN TRANSACTION;\nDECLARE @promotion_groups_list promotion_groups_list;\nINSERT INTO @promotion_groups_list\nVALUES  (\n           732, 733, 57\n       )\n     , (\n           732, 734, 43\n       );\n\n\nEXEC support.p_update_Stats_split_leads_to_groups\n    @promotion_groups_list = @promotion_groups_list\n  , @initcount = 1;\n\nROLLBACK TRANSACTION;\n"
+}

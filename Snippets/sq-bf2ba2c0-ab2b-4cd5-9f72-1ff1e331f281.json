@@ -1,0 +1,8 @@
+{
+  "id": "bf2ba2c0-ab2b-4cd5-9f72-1ff1e331f281",
+  "name": "sq",
+  "prefix": "sq",
+  "description": "Surround with Quotes",
+  "body": "'$SELECTEDTEXT$'",
+  "placeholders": []
+}

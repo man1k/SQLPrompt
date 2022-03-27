@@ -1,0 +1,8 @@
+{
+  "id": "8ed319b4-948e-4df9-a6f0-8fc0164cdfb6",
+  "name": "roj",
+  "prefix": "roj",
+  "description": "RIGHT OUTER JOIN fragment",
+  "body": "RIGHT OUTER JOIN ",
+  "placeholders": []
+}

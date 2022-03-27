@@ -1,0 +1,16 @@
+{
+  "id": "fc3085cb-2da1-4790-bbda-8cb2b03165ec",
+  "prefix": "rdbfsnap",
+  "description": "Restore database from snapshot",
+  "body": "USE master\r\nGO\r\nALTER DATABASE $DatabaseName$ SET SINGLE_USER WITH ROLLBACK IMMEDIATE\r\nGO\r\nRESTORE DATABASE $DatabaseName$ FROM DATABASE_SNAPSHOT = '$SnapshotName$'\r\nGO\r\n",
+  "placeholders": [
+    {
+      "name": "DatabaseName",
+      "defaultValue": "TradeNetworks"
+    },
+    {
+      "name": "SnapshotName",
+      "defaultValue": null
+    }
+  ]
+}
