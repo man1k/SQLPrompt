@@ -1,0 +1,16 @@
+{
+  "id": "b4bee058-ef9c-4a24-ac3f-5f122b52300f",
+  "prefix": "crtt",
+  "description": "Create Types table",
+  "body": "CREATE TABLE $SchemaName$.$TableName$s (\r\n    $TableName$Id   SMALLINT    NOT NULL\r\n  , $TableName$Name VARCHAR(50) NOT NULL\r\n  , CONSTRAINT PK_$TableName$s PRIMARY KEY CLUSTERED ($TableName$Id) WITH (DATA_COMPRESSION = PAGE, FILLFACTOR = 100)\r\n  , INDEX IU_$TableName$s$TableName$Name UNIQUE NONCLUSTERED ($TableName$Name) WITH (DATA_COMPRESSION = PAGE, FILLFACTOR = 100)\r\n)\r\n\r\nINSERT INTO CI.Lookups (\r\n                           SchemaName\r\n                         , TableName\r\n                         , WHEREClause\r\n                       )\r\nVALUES (\r\n           '$SchemaName$', '$TableName$s', NULL\r\n       )\r\n       \r\nINSERT INTO $SchemaName$.$TableName$s (\r\n\t\t\t\t\t\t\t\t\t\t  $TableName$Id\r\n\t\t\t\t\t\t\t\t\t\t,  $TableName$Name\r\n\t\t\t\t\t\t\t\t\t  )\r\nVALUES (1, '$CURSOR$')\r\n",
+  "placeholders": [
+    {
+      "name": "SchemaName",
+      "defaultValue": null
+    },
+    {
+      "name": "TableName",
+      "defaultValue": null
+    }
+  ]
+}
