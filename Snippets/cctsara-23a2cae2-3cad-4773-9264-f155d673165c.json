@@ -1,8 +1,6 @@
 {
   "id": "23a2cae2-3cad-4773-9264-f155d673165c",
-  "name": "cctsara",
   "prefix": "cctsara",
   "description": "Create :CONNECT to all SARA Instances",
-  "body": ":CONNECT SOFDEVSARA\n:CONNECT SOFQASARA\n:CONNECT SOFSTSARA\n:CONNECT SOFLTSARA\n",
-  "placeholders": []
+  "body": ":CONNECT SOFDEVSARA\n:CONNECT SOFQA2SARA\n:CONNECT SOFQASARA\n:CONNECT SOFQAPRODSARA\n:CONNECT SOFSTSARA\n:CONNECT SOFLTSARA"
 }
