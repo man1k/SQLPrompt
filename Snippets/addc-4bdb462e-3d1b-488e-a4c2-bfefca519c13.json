@@ -1,0 +1,24 @@
+{
+  "id": "4bdb462e-3d1b-488e-a4c2-bfefca519c13",
+  "prefix": "addc",
+  "description": "Add column to a table",
+  "body": "IF NOT EXISTS (\r\n                  SELECT TOP 1\r\n                         1\r\n                  FROM   sys.columns AS c\r\n                  WHERE\r\n                         c.name      = '$ColumnName$'\r\n                     AND c.object_id = OBJECT_ID ('$TableName$')\r\n              )\r\n    ALTER TABLE $TableName$ ADD $ColumnName$ $ColumnType$ $Nullability$;",
+  "placeholders": [
+    {
+      "name": "TableName",
+      "defaultValue": null
+    },
+    {
+      "name": "ColumnName",
+      "defaultValue": null
+    },
+    {
+      "name": "ColumnType",
+      "defaultValue": null
+    },
+    {
+      "name": "Nullability",
+      "defaultValue": "NULL"
+    }
+  ]
+}
