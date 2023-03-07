@@ -1,8 +1,20 @@
 {
   "id": "fcf61906-5ebd-41c2-b946-6d1929301492",
-  "name": "ap",
   "prefix": "ap",
   "description": "ALTER PROCEDURE fragment",
-  "body": "ALTER PROCEDURE ",
-  "placeholders": []
+  "body": "/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*\\ \r\n    ALTER PROCEDURE $3SPName$\r\n\\*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/ \r\nRAISERROR ('ALTER PROCEDURE $2SPName$', 0, 1) WITH NOWAIT\r\nGO\r\nALTER PROCEDURE $1SPName$",
+  "placeholders": [
+    {
+      "name": "1SPName",
+      "defaultValue": null
+    },
+    {
+      "name": "2SPName",
+      "defaultValue": null
+    },
+    {
+      "name": "3SPName",
+      "defaultValue": null
+    }
+  ]
 }
